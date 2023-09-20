@@ -1,3 +1,4 @@
+
 /* styles.css */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
@@ -60,6 +61,10 @@
 }
 
 .layout2 {
+}
+
+
+.flex-all-center {
   display: flex;
   flex-direction: column;
   justify-content: center;

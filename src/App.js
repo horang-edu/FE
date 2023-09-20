@@ -1,11 +1,8 @@
-import Progress from "./components/Progress";
+import Router from "./shared/Router";
+import "./style/style.css";
+
 function App() {
-  // return <div>Hello, World!</div>;
-  return (
-    <div>
-      <Progress />
-    </div>
-  );
+  return <Router />;
 }
 
 export default App;
