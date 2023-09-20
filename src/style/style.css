@@ -1,0 +1,72 @@
+
+/* styles.css */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-layout {
+  width: 995px;
+  height: 250px;
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+}
+
+.progress-profile {
+  padding: 20px 50px 20px 40px;
+  border-right: 1px solid #cfcdff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-text {
+  display: flex;
+  flex-direction: row;
+}
+
+.progress {
+  /* padding: auto; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-text1 {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 21px;
+  color: #605af1;
+}
+
+.profile-text2 {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 700;
+  color: #605af1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.layout2 {
+}
+
+
+.flex-all-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

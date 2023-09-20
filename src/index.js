@@ -3,8 +3,12 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import Router from './shared/Router';
 import "../src/style/styles.css"
+import "./index.css";
+// import App from "./App";
+import "../src/style/style.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router />

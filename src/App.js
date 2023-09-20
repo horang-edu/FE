@@ -1,5 +1,8 @@
+import Router from "./shared/Router";
+import "./style/style.css";
+
 function App() {
-  return <div>Hello, World!</div>;
+  return <Router />;
 }
 
 export default App;
