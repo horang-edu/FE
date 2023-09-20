@@ -1,0 +1,11 @@
+/* styles.css */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* 여기에 사용자 정의 스타일을 추가하세요 */
+.mission-layout {
+    height: 8.6875rem;
+    border: .125rem solid rgba(207, 205, 255, 1);
+    border-radius: .625rem;
+}
