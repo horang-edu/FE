@@ -81,6 +81,7 @@
   cursor: pointer;
   border-radius: 0.625rem 0.625rem 0rem 0rem;
   box-shadow: 2px 0px 4px 0px rgba(159, 156, 240, 0.15);
+}
 
 .mission-modal-layout {
   border-radius: 0.625rem;
