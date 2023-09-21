@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ReactComponent as Profile } from "../assets/profile.svg";
+import { ReactComponent as Profile } from "../assets/svg/profile.svg";
 import axios from "axios";
 import ProgressBar from "react-progressbar";
 function Progress() {
