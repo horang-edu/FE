@@ -1,3 +1,4 @@
+import Router from "./shared/Router";
 // import Router from "./shared/Router";
 import "./style/style.css";
 
