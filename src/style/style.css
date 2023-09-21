@@ -59,9 +59,6 @@
   align-items: flex-end;
 }
 
-.layout2 {
-}
-
 .flex-all-center {
   display: flex;
   flex-direction: column;
