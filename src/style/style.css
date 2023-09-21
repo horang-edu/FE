@@ -59,12 +59,32 @@
   align-items: flex-end;
 }
 
-.layout2 {
-}
-
 .flex-all-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.task-layout {
+  width: 465px;
+  height: 148px;
+  left: 280px;
+  top: 532px;
+
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(159, 156, 240, 0.15);
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.task-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.task-title {
+  display: flex;
+  flex-direction: row;
 }
