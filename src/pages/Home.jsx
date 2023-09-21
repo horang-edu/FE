@@ -1,6 +1,16 @@
 import React from "react";
+import Tab from "../components/tab/Tab";
+import UserRanking from "../components/ranking/UserRanking";
+import SchoolRanking from "../components/ranking/SchoolRanking";
+import CampusRanking from "../components/ranking/CampusRanking";
 
 function Home() {
+  const tabData = [
+    { menu: "사용자 순위", content: <UserRanking /> },
+    { menu: "학교 별 순위", content: <SchoolRanking /> },
+    { menu: "학교 내 순위", content: <CampusRanking /> },
+  ];
+
   return (
     <div>
       <div>
@@ -13,14 +23,9 @@ function Home() {
         <div>주간미션</div>
       </div>
       <div>새로 업데이트 된 문제</div>
-      <div>
-        <div>순위 차트</div>
-        <div>
-          <button>사용자 순위</button>
-          <button>학교 별 순위</button>
-          <button>학교 내 순위</button>
-          <div></div>
-        </div>
+      <div className="w-[542px]">
+        <h2>순위 차트</h2>
+        <Tab tabData={tabData} type={"userRanking"} />
       </div>
     </div>
   );
