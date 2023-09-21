@@ -71,3 +71,10 @@
   border: 0.125rem solid rgba(207, 205, 255, 1);
   border-radius: 0.625rem;
 }
+
+.mission-modal-layout {
+  border-radius: 0.625rem;
+  background: #ffffff;
+  height: 25rem;
+  width: 25rem;
+}
