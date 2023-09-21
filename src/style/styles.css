@@ -72,6 +72,12 @@
   border-radius: 0.625rem;
 }
 
+.mission-modal-layout {
+  border-radius: 0.625rem;
+  background: #ffffff;
+  height: 25rem;
+  width: 25rem;
+
 .task-layout {
   width: 465px;
   height: 148px;

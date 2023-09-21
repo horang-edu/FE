@@ -6,14 +6,17 @@ module.exports = {
         'sans': ['Noto Sans', 'sans-serif'],
       },
       width: {
+        '40': '2.5rem',
         '92': '5.75rem',
         '417': '26.0625rem',
+        '500': '31.25rem',
         '542': '33.875rem',
-        '40': '2.5rem',
+        
       },
       height: {
-        '79': '4.9375rem',
         '40': '2.5rem',
+        '79': '4.9375rem',
+        '500': '31.25rem'
       },
       fontSize: {
         '12': '0.75rem',
@@ -45,9 +48,13 @@ module.exports = {
         'color5': 'rgba(159, 156, 240, 1)',
         'color6': 'rgba(96, 90, 241, 1)',
         'white': 'rgba(255, 255, 255, 1)',
+        'default-color': '#9F9CF0',
+        'gray':'rgba(128, 128, 128, 1)',
+        'unselect':'rgba(242, 242, 242, 1)'
       },
       boxShadow: {
         'custom': '0rem .25rem .25rem 0rem rgba(159, 156, 240, 0.15)',
+        'select': '0.125rem -.25rem .25rem 0rem rgba(159, 156, 240, 0.15)'
       },
       borderRadius: {
         custom: "0.625rem",
