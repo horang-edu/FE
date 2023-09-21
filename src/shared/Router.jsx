@@ -4,6 +4,7 @@ import Dashboard from "../pages/Dashboard";
 import Layout from "../components/common/layout/Layout";
 import Practice from "../pages/Practice";
 import Study from "../pages/Study";
+import Min from "../pages/Min";
 
 function Router() {
   return (
@@ -14,6 +15,7 @@ function Router() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/practice" element={<Practice />} />
           <Route path="/study" element={<Study />} />
+          <Route path="/min" element={<Min />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -82,4 +82,33 @@
   cursor: pointer;
   border-radius: 0.625rem 0.625rem 0rem 0rem;
   box-shadow: 2px 0px 4px 0px rgba(159, 156, 240, 0.15);
+
+.mission-modal-layout {
+  border-radius: 0.625rem;
+  background: #ffffff;
+  height: 25rem;
+  width: 25rem;
+}
+
+.task-layout {
+  width: 465px;
+  height: 148px;
+  left: 280px;
+  top: 532px;
+
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(159, 156, 240, 0.15);
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.task-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.task-title {
+  display: flex;
+  flex-direction: row;
 }
