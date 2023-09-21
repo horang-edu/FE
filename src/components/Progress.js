@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ReactComponent as Profile } from "../assets/profile.svg";
+import { ReactComponent as Profile } from "../assets/svg/profile.svg";
 import axios from "axios";
 import ProgressBar from "react-progressbar";
 function Progress() {
@@ -8,9 +8,7 @@ function Progress() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://54.180.142.251:8080/api/student/8"
-        );
+        const response = await axios.get("http://54.180.142.251:8080/api/student/8");
         const data = response.data;
         setUserData(data);
       } catch (error) {
@@ -58,17 +56,11 @@ function Progress() {
                   }}
                 />
               </div>
-              <div className="layout">
-                3단계까지 {remainingpercent}%남았어요. 파이팅!
-              </div>
+              <div className="layout">3단계까지 {remainingpercent}%남았어요. 파이팅!</div>
             </div>
             <div>
-              <div className="font-size: 1.125rem line-height: 1.75rem;">
-                경험치
-              </div>
-              <div className="profile-text2">
-                {userData.data.exp}/총 경험치 100
-              </div>
+              <div className="font-size: 1.125rem line-height: 1.75rem;">경험치</div>
+              <div className="profile-text2">{userData.data.exp}/총 경험치 100</div>
               <div className="progress">
                 <div>{userData.data.level}</div>
                 <div>
