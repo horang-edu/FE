@@ -33,7 +33,6 @@ function Tab({ tabData }) {
           );
         })}
       </ul>
-      {console.log(type)}
       <div className={`${padding[type[currentTab]]} w-full rounded-custom shadow-custom bg-white`}>{tabData[currentTab].content}</div>
     </div>
   );
