@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ReactComponent as DeleteButton } from "../assets/delete.svg";
 
@@ -6,31 +6,35 @@ function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
   const [newWishlist, setNewWishlist] = useState("");
 
-  const handleClick = async () => {
-    try {
-      const response = await axios.get("http://54.180.142.251:8080/api/dibs");
-      setWishlist(response.data.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://13.209.68.120:8080/api/dibs");
+        setWishlist(response.data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  const handleAddTask = async () => {
+    fetchData();
+  }, [newWishlist]);
+
+  const handleAddWishlist = async () => {
     try {
-      await axios.post("http://54.180.142.251:8080/api/dibs", {
+      await axios.post("http://13.209.68.120:8080/api/dibs", {
         topic: newWishlist,
       });
+      setWishlist([...wishlist, { topic: newWishlist }]);
       setNewWishlist("");
-      handleClick();
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleDeleteTask = async (id) => {
+  const handleDeleteWishlist = async (id) => {
     try {
-      await axios.delete(`http://54.180.142.251:8080/api/dibs/${id}`);
-      const updatedWishlist = wishlist.filter((task) => task.id !== id);
+      await axios.delete(`http://13.209.68.120:8080/api/dibs/${id}`);
+      const updatedWishlist = wishlist.filter((item) => item.id !== id);
       setWishlist(updatedWishlist);
     } catch (error) {
       console.error(error);
@@ -39,8 +43,11 @@ function Wishlist() {
 
   return (
     <div>
-      <button onClick={handleClick}>불러오기</button>
-      <div className="pl-4 text-lg">오늘의 과제</div>
+      <div className="flex ">
+        <div className="text-black font-noto-sans font-semibold text-xl leading-118">
+          찜 목록
+        </div>
+      </div>
       <div className="task-layout">
         {wishlist.map((wish, index) => (
           <div className="task-text" key={index}>
@@ -48,7 +55,7 @@ function Wishlist() {
               <div className="text-lg">{wish.topic}</div>
               <div className="text-base">{wish.checkBox}</div>
             </div>
-            <DeleteButton onClick={() => handleDeleteTask(wish.id)} />
+            <DeleteButton onClick={() => handleDeleteWishlist(wish.id)} />
           </div>
         ))}
       </div>
@@ -58,7 +65,7 @@ function Wishlist() {
           value={newWishlist}
           onChange={(e) => setNewWishlist(e.target.value)}
         />
-        <button onClick={handleAddTask}>과제 추가</button>
+        <button onClick={handleAddWishlist}>과제 추가</button>
       </div>
     </div>
   );

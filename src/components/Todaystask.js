@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ReactComponent as CheckboxChecked } from "../assets/true.svg";
 import { ReactComponent as CheckboxUnchecked } from "../assets/false.svg";
@@ -7,38 +7,50 @@ function Todaystask() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
 
-  const handleClick = async () => {
-    try {
-      const response = await axios.get(
-        "http://54.180.142.251:8080/api/homework"
-      );
-      setTasks(response.data.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://13.209.68.120:8080/api/homework"
+        );
+        setTasks(response.data.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [newTask]);
 
   const handleAddTask = async () => {
     try {
-      await axios.post("http://54.180.142.251:8080/api/homework", {
-        topic: newTask,
-      });
+      const response = await axios.post(
+        "http://13.209.68.120:8080/api/homework",
+        {
+          topic: newTask,
+        }
+      );
+
+      console.log(response);
+
       setNewTask("");
-      handleClick();
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <div>
-      <button onClick={handleClick}>불러오기</button>
-      <div className="pl-4 text-lg">오늘의 과제</div>
+    <div className="mb-8">
+      <div className="text-black font-noto-sans font-semibold text-xl leading-118">
+        오늘의 과제
+      </div>
       <div className="task-layout">
         {tasks.map((task, index) => (
           <div className="task-text" key={index}>
             <div className="task-title flex items-center">
-              <div className="text-lg">{task.topic}</div>
+              <div className="text-black font-noto-sans text-xl font-semibold leading-118 ">
+                {task.topic}
+              </div>
               <div className="text-base">{task.checkBox}</div>
             </div>
             {task.checkBox ? <CheckboxChecked /> : <CheckboxUnchecked />}
