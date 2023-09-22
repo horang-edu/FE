@@ -3,6 +3,8 @@ import Tab from "../components/tab/Tab";
 import UserRanking from "../components/ranking/UserRanking";
 import SchoolRanking from "../components/ranking/SchoolRanking";
 import CampusRanking from "../components/ranking/CampusRanking";
+import CalendarMission from "../components/mission/CalendarMission";
+import Mission from "../components/mission/Mission";
 
 function Home() {
   const tabData = [
@@ -15,6 +17,10 @@ function Home() {
     { menu: "공지사항", content: <SchoolRanking />, type: "schoolRanking" },
     { menu: "Q & A", content: <UserRanking />, type: "userRanking" },
   ];
+  const announcement = [
+    { menu: "공지사항", content: <UserRanking /> },
+    { menu: "Q & A", content: <UserRanking /> },
+  ]
 
   return (
     <div>
@@ -25,15 +31,14 @@ function Home() {
         <div>공지사항</div>
         <Tab tabData={announcement} />
       </div>
-      <div>
-        <div>출석체크</div>
-        <div>일간미션</div>
-        <div>주간미션</div>
+      <div class='flex'>
+        <CalendarMission/>
+        <Mission/>
       </div>
       <div>새로 업데이트 된 문제</div>
       <div className="w-[33.875rem]">
         <h2>순위 차트</h2>
-        <Tab tabData={tabData} />
+        <Tab data={tabData} />
       </div>
     </div>
   );
