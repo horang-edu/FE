@@ -1,16 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
+// eslint-disable-next-line no-unused-vars
 import Router from "./shared/Router";
 import "./index.css";
 import "../src/style/styles.css";
 import "../src/style/reset.css";
-// import App from "./App";
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Router />
+    <App />
   </React.StrictMode>
 );
 
