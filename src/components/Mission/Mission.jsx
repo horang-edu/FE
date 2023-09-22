@@ -2,7 +2,7 @@ import React from 'react'
 
 function Mission() {
     return (
-        <div class='mission-layout w-542 flex flex-row items-center'>
+        <div class='mission-layout w-542 flex flex-row items-center bg-white'>
             {/* 일간미션 */}
             <div className='dayMission' class='pl-25 pt-16 pb-19 justify-start'>
                 <div class='flex flex-row items-center mb-40 '>
