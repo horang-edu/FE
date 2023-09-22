@@ -11,7 +11,6 @@ function Calendar() {
                     <div class='font-semibold text-22 mb-10'>매일 출석체크</div>
                     <div class='font-medium text-16'>꾸준히 코딩 학습하고 <span class='font-semibold'>경험치</span>도 받아요!</div>
                 </div>
-                {/* <button class='w-92 h-79 bg-color1 rounded-custom font-semibold text-white text-lg shadow-custom ml-24'>출석하기</button> */}
             </div>
     )
 }
