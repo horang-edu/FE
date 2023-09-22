@@ -8,9 +8,14 @@ import Mission from "../components/mission/Mission";
 
 function Home() {
   const tabData = [
-    { menu: "사용자 순위", content: <UserRanking /> },
-    { menu: "학교 별 순위", content: <SchoolRanking /> },
-    { menu: "학교 내 순위", content: <CampusRanking /> },
+    { menu: "사용자 순위", content: <UserRanking />, type: "userRanking" },
+    { menu: "학교 별 순위", content: <SchoolRanking />, type: "schoolRanking" },
+    { menu: "학교 내 순위", content: <CampusRanking />, type: "campusRanking" },
+  ];
+
+  const announcement = [
+    { menu: "공지사항", content: <SchoolRanking />, type: "schoolRanking" },
+    { menu: "Q & A", content: <UserRanking />, type: "userRanking" },
   ];
   const announcement = [
     { menu: "공지사항", content: <UserRanking /> },
@@ -22,8 +27,10 @@ function Home() {
       <div>
         안녕하세요, <span>코딩짱호랭이</span>님!
       </div>
-      <Tab data={announcement}/>
-      <div>공지사항</div>
+      <div>
+        <div>공지사항</div>
+        <Tab tabData={announcement} />
+      </div>
       <div class='flex'>
         <CalendarMission/>
         <Mission/>
