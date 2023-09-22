@@ -23,9 +23,9 @@ function Home() {
         <div>주간미션</div>
       </div>
       <div>새로 업데이트 된 문제</div>
-      <div className="w-[542px]">
+      <div className="w-[33.875rem]">
         <h2>순위 차트</h2>
-        <Tab tabData={tabData} type={"userRanking"} />
+        <Tab tabData={tabData} />
       </div>
     </div>
   );

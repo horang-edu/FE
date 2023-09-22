@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 
-function Tab({ tabData, type }) {
+function Tab({ tabData }) {
   const [currentTab, setCurrentTab] = useState(0);
-  const padding = {
-    userRanking: "px-[3.125rem] py-5",
-    schoolRanking: "px-[6.375rem] py-5",
-    campusRanking: "px-[4.5rem] py-5",
-    notice: "px-[2.375rem] py-8",
-    question: "px-[1.875rem] pt-5 pb-[2.375rem]",
-  };
+  // const padding = {
+  //   userRanking: "px-[2.625rem] py-5",
+  //   schoolRanking: "px-[6.375rem] py-5",
+  //   campusRanking: "px-[2.625rem] py-5",
+  //   // campusRanking: "px-[4.5rem] py-5",
+  //   notice: "px-[2.375rem] py-8",
+  //   question: "px-[1.875rem] pt-5 pb-[2.375rem]",
+  // };
+
+  const padding = [
+    "px-[2.625rem] py-5", // userRanking
+    "px-[6.375rem] py-5", // schoolRanking
+    "px-[2.625rem] py-5", // campusRanking
+    "px-[2.375rem] py-8", // notice
+    "px-[1.875rem] pt-5 pb-[2.375rem]", // question
+  ];
 
   return (
     <div>
@@ -21,7 +30,7 @@ function Tab({ tabData, type }) {
           );
         })}
       </ul>
-      <div className={`${padding[type]} w-full rounded-custom shadow-custom bg-white`}>{tabData[currentTab].content}</div>
+      <div className={`${padding[currentTab]} w-full h-[23.4375rem] overflow-hidden rounded-custom shadow-custom bg-white`}>{tabData[currentTab].content}</div>
     </div>
   );
 }
