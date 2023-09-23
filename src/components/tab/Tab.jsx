@@ -8,8 +8,8 @@ function Tab({ tabData }) {
     userRanking: "px-[2.625rem] py-5",
     schoolRanking: "px-[5.5rem] py-5",
     campusRanking: "px-[2.625rem] py-5",
-    notice: "px-[2.375rem] ",
-    question: "px-[1.875rem] pt-5 pb-[2.375rem]",
+    notice: "px-[2.375rem] py-0",
+    question: "px-[2.375rem] py-0",
   };
 
   const h = {
