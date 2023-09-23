@@ -9,7 +9,7 @@ function Wishlist() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://13.209.68.120:8080/api/dibs");
+        const response = await axios.get("http://52.79.60.105:8080/api/dibs");
         setWishlist(response.data.data);
       } catch (error) {
         console.error(error);
@@ -19,21 +19,21 @@ function Wishlist() {
     fetchData();
   }, [newWishlist]);
 
-  const handleAddWishlist = async () => {
-    try {
-      await axios.post("http://13.209.68.120:8080/api/dibs", {
-        topic: newWishlist,
-      });
-      setWishlist([...wishlist, { topic: newWishlist }]);
-      setNewWishlist("");
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const handleAddWishlist = async () => {
+  //   try {
+  //     await axios.post("http://52.79.60.105:8080/api/dibs", {
+  //       topic: newWishlist,
+  //     });
+  //     setWishlist([...wishlist, { topic: newWishlist }]);
+  //     setNewWishlist("");
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   const handleDeleteWishlist = async (id) => {
     try {
-      await axios.delete(`http://13.209.68.120:8080/api/dibs/${id}`);
+      await axios.delete(`http://52.79.60.105:8080/api/dibs/${id}`);
       const updatedWishlist = wishlist.filter((item) => item.id !== id);
       setWishlist(updatedWishlist);
     } catch (error) {
@@ -60,12 +60,12 @@ function Wishlist() {
         ))}
       </div>
       <div>
-        <input
+        {/* <input
           type="text"
           value={newWishlist}
           onChange={(e) => setNewWishlist(e.target.value)}
-        />
-        <button onClick={handleAddWishlist}>과제 추가</button>
+        /> */}
+        {/* <button onClick={handleAddWishlist}>과제 추가</button> */}
       </div>
     </div>
   );

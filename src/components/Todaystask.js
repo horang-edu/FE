@@ -11,7 +11,7 @@ function Todaystask() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://13.209.68.120:8080/api/homework"
+          "http://52.79.60.105:8080/api/homework"
         );
         setTasks(response.data.data);
       } catch (error) {
@@ -25,7 +25,7 @@ function Todaystask() {
   const handleAddTask = async () => {
     try {
       const response = await axios.post(
-        "http://13.209.68.120:8080/api/homework",
+        "http://52.79.60.105:8080/api/homework",
         {
           topic: newTask,
         }
@@ -62,8 +62,9 @@ function Todaystask() {
           type="text"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
+          class='mt-2 rounded-custom'
         />
-        <button onClick={handleAddTask}>과제 추가</button>
+        <button class='mt-2 ml-2' onClick={handleAddTask}>과제 추가</button>
       </div>
     </div>
   );
