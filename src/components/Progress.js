@@ -9,6 +9,7 @@ function Progress() {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://13.209.68.120:8080/api/student/8");
+        const response = await axios.get("http://52.79.60.105:8080/api/student/8");
         const data = response.data;
         setUserData(data);
       } catch (error) {

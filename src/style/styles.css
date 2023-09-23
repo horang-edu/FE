@@ -115,6 +115,100 @@
   flex-direction: row;
 }
 
+.react-calendar__navigation {
+  background: rgba(231, 231, 255, 1);
+  height: 5rem;
+  border-radius: 1.25rem 1.25rem 0 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem;
+}
+
+.react-calendar__navigation span {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: rgba(96, 90, 241, 1);
+}
+
+.react-calendar__navigation button:disabled {
+  background-color: rgb(215, 215, 255);
+  border-radius: 20px 20px 0;
+}
+
+.react-calendar__navigation button:hover {
+  background-color: rgb(215, 215, 255);
+  border-radius: 100px;
+}
+
+.react-calendar__month-view {
+  padding: 0px 10px 10px 10px;
+}
+
+.react-calendar__month-view abbr {
+  color: rgb(50, 50, 50);
+  font-size: 16px;
+  font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.react-calendar__month-view__weekdays abbr {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.react-calendar__tile {
+  text-align: center;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.react-calendar__tile:hover,
+.react-calendar__tile--active {
+  background-color: rgb(242, 242, 255) !important;
+  border-radius: 14px;
+}
+
+.react-calendar__tile--now {
+  background-color: rgba(207, 205, 255, 1);
+  border-radius: 14px;
+}
+
+.react-calendar__tile--now:hover,
+.react-calendar__tile--now:focus {
+  background-color: rgba(231, 231, 255, 1) !important;
+  border-radius: 14px;
+  font-weight: 700;
+}
+
+.highlight {
+  background-color: rgba(255, 255, 255, 0.5);
+  background-image: url("../assets/svg/star.svg");
+  background-blend-mode: multiply;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.react-calendar {
+  border: none;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 10px;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
