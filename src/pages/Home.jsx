@@ -8,40 +8,53 @@ import Mission from "../components/mission/Mission";
 import Announcement from "../components/announcement/Announcement";
 import QA from "../components/announcement/QA";
 import Modal from "../components/mission/Modal";
+import Update from "../components/Update";
+import logo from '../assets/svg/alarm.svg'
 
 function Home() {
   const [showModal, setShowModal] = useState(false);
   const tabData = [
-    { menu: "사용자 순위", content: <UserRanking /> ,type:'userRank'},
-    { menu: "학교 별 순위", content: <SchoolRanking />,type:'schoolRank' },
-    { menu: "학교 내 순위", content: <CampusRanking />,type:'campusRank' },
+    { menu: "사용자 순위", content: <UserRanking />, type: 'userRank' },
+    { menu: "학교 별 순위", content: <SchoolRanking />, type: 'schoolRank' },
+    { menu: "학교 내 순위", content: <CampusRanking />, type: 'campusRank' },
   ];
 
   const announcement = [
-    { menu: "공지사항", content: <Announcement />, type: 'notice' },
+    { menu: "학급 공지사항", content: <Announcement />, type: 'notice' },
     { menu: "Q & A", content: <QA />, type: 'question' },
   ]
 
   return (
-    <div>
-      <div>
-        안녕하세요, <span>코딩짱호랭이</span>님!
+    <div class='w-full h-full flex flex-col justify-center items-center'>
+      <div class='flex ml-auto mt-[3.0625rem] mb-[0.9375rem] mr-[10%]'>
+        <div>
+          안녕하세요, <span class='font-semibold'>cozy 님!</span>
+        </div>
+        <img src={logo} alt="배경" />
       </div>
-      <div class="w-[62.1875rem]">
-        <Tab tabData={announcement}/>
+
+      <div class="w-[62.1875rem] mb-[1.3125rem]">
+        <Tab tabData={announcement} />
       </div>
-      <div class='flex'>
-        <CalendarMission/>
-        <Mission showModal={showModal} setShowModal={setShowModal}/>
+      <div class='flex mb-[3.5rem]'>
+        <CalendarMission />
+        <Mission showModal={showModal} setShowModal={setShowModal} />
       </div>
       {showModal && (
         <Modal show={showModal} onClose={() => setShowModal(false)} />
       )}
-      <div>새로 업데이트 된 문제</div>
-      <div className="w-[33.875rem]">
-        <h2>순위 차트</h2>
-        <Tab tabData={tabData} />
+      <div class='flex'>
+        <div>
+          <div class='text-24 font-semibold px-[1.3125rem] mb-[1.0625rem]'>새로 업데이트 된 문제</div>
+          <Update />
+        </div>
+        <div className="w-[33.875rem] ml-[2.125rem]">
+          <h2 class='text-24 font-semibold px-[1.3125rem] mb-[1.0625rem]'>순위 차트</h2>
+          <Tab tabData={tabData} />
+        </div>
+
       </div>
+
     </div>
   );
 }
