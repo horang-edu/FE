@@ -30,14 +30,14 @@ function Home() {
         <div>
           안녕하세요, <span class="font-semibold">cozy 님!</span>
         </div>
-        <img class='ml-2' src={logo} alt="배경" />
+        <img class="ml-2" src={logo} alt="배경" />
       </div>
 
       <div class="w-[62.1875rem] mb-[1.3125rem]">
         <Tab tabData={announcement} />
       </div>
-      <div class='flex mb-[3.5rem]'>
-        <CalendarMission showModal={showModal} setShowModal={setShowModal}/>
+      <div class="flex mb-[3.5rem]">
+        <CalendarMission showModal={showModal} setShowModal={setShowModal} />
         <Mission showModal={showModal} setShowModal={setShowModal} />
       </div>
       {showModal && <Modal show={showModal} onClose={() => setShowModal(false)} />}
