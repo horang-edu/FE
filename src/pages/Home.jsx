@@ -37,7 +37,7 @@ function Home() {
         <Tab tabData={announcement} />
       </div>
       <div class='flex mb-[3.5rem]'>
-        <CalendarMission />
+        <CalendarMission showModal={showModal} setShowModal={setShowModal} />
         <Mission showModal={showModal} setShowModal={setShowModal} />
       </div>
       {showModal && (

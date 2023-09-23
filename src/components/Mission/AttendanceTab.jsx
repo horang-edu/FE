@@ -9,7 +9,7 @@ function AttendanceTab() {
   today.setHours(today.getHours());
   const [value, onChange] = useState(new Date());
   const [attendanceDates, setAttendanceDates] = useState([]);
-  
+
   function toLocalDateString(date) {
     date.setDate(date.getDate());
     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
@@ -34,6 +34,7 @@ function AttendanceTab() {
     try {
       await axios.post(`http://52.79.60.105:8080/api/attendance?day=${value.toISOString().split('T')[0]}`);
       getAttendanceDates();
+      alert("출석되었습니다!"); 
     } catch (error) {
       console.error(error);
     }
@@ -41,14 +42,15 @@ function AttendanceTab() {
 
   return (
     <div class='drop-shadow-md flex flex-col items-center'>
-      <Calendar 
+      <Calendar
         onChange={onChange}
         value={value}
-        tileClassName={({ date }) => 
+        locale="en-US"
+        tileClassName={({ date }) =>
           attendanceDates.includes(toLocalDateString(date)) ? "highlight" : null}
-        />
+      />
       <button class='mt-[1rem] w-139 h-49 bg-color1 rounded-custom font-bold text-white text-18'
-      onClick={checkIn}>출석하기</button>
+        onClick={checkIn}>출석하기</button>
     </div>
   );
 }
