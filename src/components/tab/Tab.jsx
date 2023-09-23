@@ -13,14 +13,7 @@ function Tab({ tabData }) {
     question: "px-[1.875rem] pt-5 pb-[2.375rem]",
   };
 
-  // const padding = [
-  //   "px-[2.625rem] py-5", // userRanking
-  //   "px-[6.375rem] py-5", // schoolRanking
-  //   "px-[2.625rem] py-5", // campusRanking
-  //   "px-[2.375rem] py-8", // notice
-  //   "px-[1.875rem] pt-5 pb-[2.375rem]", // question
-  // ];
-
+  
   return (
     <div>
       <ul className="flex ml-[1.4375rem]">
@@ -33,7 +26,7 @@ function Tab({ tabData }) {
           );
         })}
       </ul>
-      <div className={`${padding[type[currentTab]]} w-full rounded-custom shadow-custom bg-white`}>{tabData[currentTab].content}</div>
+      <div className={`${padding[type[currentTab].type]} w-full rounded-custom shadow-custom bg-white`}>{tabData[currentTab].content}</div>
     </div>
   );
 }

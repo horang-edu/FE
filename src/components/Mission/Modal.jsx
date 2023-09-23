@@ -2,12 +2,20 @@ import React, { useState } from 'react'
 import AttendanceTab from '../mission/AttendanceTab';
 import studyBackground from '../../assets/svg/studyBackground.svg'
 
-function Modal() {
+function Modal({ show, onClose }) {
     const [activeTab, setActiveTab] = useState(1);
+    if (!show) {
+        return null;
+    }
+    const handleCloseClick = (e) => {
+        e.preventDefault();
+        onClose();
+    };
 
     return (
-        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col">
-            <div className="flex pl-[1.4375rem]">
+        <div class='modal-overlay'>
+            <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col" onClick={handleCloseClick}>
+            <div className="flex pl-[1.4375rem]" onClick={(e) => e.stopPropagation()}>
                 {['출석 체크', '일간 미션', '주간 미션'].map((tab, index) => (
                     <button
                         key={index}
@@ -17,6 +25,7 @@ function Modal() {
                         {tab}
                     </button>
                 ))}
+                <button class='w-[2.4rem] h-[2.4rem] ml-[9rem] bg-color1 rounded-full font-bold text-white text-lg shadow-custom' onClick={handleCloseClick}>✕</button>
             </div>
             <div className="w-500 h-500 bg-white rounded-custom shadow-custom overflow-y-auto">
                 {activeTab === 1 &&
@@ -37,7 +46,7 @@ function Modal() {
                                 <div class='z-10 text-[1.25rem] font-semibold text-22 mb-6'>찜 목록에 저장 후 복습하기</div>
                                 <div class='z-10 text-[1rem] text-16'>다시 풀고 싶은 문제를 찜 목록에 저장한 후, 복습해 보세요.</div>
                             </div>
-                            <button class='w-139 h-49 bg-color1 rounded-custom font-bold text-white text-18 mb-[2rem]'>학습하기</button>
+                            <button class='w-139 h-49 bg-color1 rounded-custom font-bold text-white text-18 mb-[2rem] shadow-custom'>학습하기</button>
                         </div>
                     </>
                 }
@@ -62,12 +71,14 @@ function Modal() {
                                         </div>
                                     ))}
                                 </div>
-                            <button class='w-139 h-49 bg-color1 rounded-custom font-bold text-white text-18 mb-[2rem]'>오늘 미션하기</button>
+                            <button class='w-139 h-49 bg-color1 rounded-custom font-bold text-white text-18 mb-[2rem] shadow-custom'>오늘 미션하기</button>
                         </div>
                     </>
                 }
             </div>
+        </div> 
         </div>
+       
     );
 }
 
