@@ -1,10 +1,7 @@
-import "./style/style.css";
-
-import Wishlist from "./components/Wishlist";
+import Router from "./shared/Router";
 
 function App() {
-  // return <Router />;
-  return <Wishlist />;
+  return <Router />;
 }
 
 export default App;

@@ -6,7 +6,7 @@ function Tab({ tabData }) {
 
   const padding = {
     userRanking: "px-[2.625rem] py-5",
-    schoolRanking: "px-[8rem] py-5",
+    schoolRanking: "px-[6.4375rem] py-5",
     campusRanking: "px-[2.625rem] py-5",
     // campusRanking: "px-[4.5rem] py-5",
     notice: "px-[2.375rem] py-8",
@@ -22,7 +22,7 @@ function Tab({ tabData }) {
   // ];
 
   return (
-    <div>
+    <div className="h-full">
       <ul className="flex ml-[1.4375rem]">
         {tabData.map((item, index) => {
           type.push(item.type);
@@ -33,8 +33,7 @@ function Tab({ tabData }) {
           );
         })}
       </ul>
-      {console.log(type)}
-      <div className={`${padding[type[currentTab]]} w-full rounded-custom shadow-custom bg-white`}>{tabData[currentTab].content}</div>
+      <div className={`${padding[type[currentTab]]} w-full h-full rounded-custom shadow-custom bg-white`}>{tabData[currentTab].content}</div>
     </div>
   );
 }
