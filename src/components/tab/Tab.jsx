@@ -10,6 +10,7 @@ function Tab({ tabData }) {
     campusRanking: "px-[2.625rem] py-5",
     notice: "px-[2.375rem] py-0",
     question: "px-[2.375rem] py-0",
+    myquestion: "px-[1.8125rem] py-0",
   };
 
   const h = {
@@ -18,6 +19,7 @@ function Tab({ tabData }) {
     campusRanking: "h-[23.4375rem]",
     notice: "h-[12.8125rem]",
     question: "h-[12.8125rem]",
+    myquestion: "h-[21.75rem]",
   };
 
   return (
