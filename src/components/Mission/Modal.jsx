@@ -3,6 +3,7 @@ import AttendanceTab from "./AttendanceTab";
 import studyBackground from "../../assets/svg/studyBackground.svg";
 
 function Modal({ show, onClose }) {
+    
     const [activeTab, setActiveTab] = useState(1);
     if (!show) {
         return null;
