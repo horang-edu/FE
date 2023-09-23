@@ -64,6 +64,7 @@ function Wishlist() {
           type="text"
           value={newWishlist}
           onChange={(e) => setNewWishlist(e.target.value)}
+
         />
         <button onClick={handleAddWishlist}>과제 추가</button> */}
       </div>

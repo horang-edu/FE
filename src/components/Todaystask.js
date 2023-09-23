@@ -62,9 +62,11 @@ function Todaystask() {
           type="text"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
-          class='mt-2'
+
+          class='mt-2 rounded-custom'
         />
-        <button class='mt-2' onClick={handleAddTask}>과제 추가</button>
+        <button class='mt-2 ml-2' onClick={handleAddTask}>과제 추가</button>
+
       </div>
     </div>
   );
