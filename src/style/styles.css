@@ -121,27 +121,25 @@
   border-radius: 1.25rem 1.25rem 0 0;
   display: flex;
   flex-direction: row;
-  justify-content:center;
-   align-items:center ;
-   padding: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem;
 }
 
 .react-calendar__navigation span {
   font-size: 1.3rem;
   font-weight: 800;
   color: rgba(96, 90, 241, 1);
-  
-  
 }
 
 .react-calendar__navigation button:disabled {
   background-color: rgb(215, 215, 255);
-  border-radius: 20px 20px 0 ; 
+  border-radius: 20px 20px 0;
 }
 
 .react-calendar__navigation button:hover {
- background-color: rgb(215, 215, 255);
- border-radius: 100px;
+  background-color: rgb(215, 215, 255);
+  border-radius: 100px;
 }
 
 .react-calendar__month-view {
@@ -149,18 +147,18 @@
 }
 
 .react-calendar__month-view abbr {
-  color: rgb(50, 50, 50); 
+  color: rgb(50, 50, 50);
   font-size: 16px;
   font-weight: 300;
   display: flex;
   flex-direction: column;
-  justify-content:flex-start ;
-   align-items:center ;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .react-calendar__month-view__weekdays abbr {
   font-size: 18px;
-  font-weight: 800; 
+  font-weight: 800;
 }
 
 .react-calendar__tile {
@@ -168,48 +166,115 @@
   height: 45px;
   display: flex;
   flex-direction: column;
-  justify-content:center ;
-  align-items:center ;
-  border: none; 
+  justify-content: center;
+  align-items: center;
+  border: none;
 }
 
 .react-calendar__tile:hover,
 .react-calendar__tile--active {
- background-color : rgb(242, 242, 255) !important; 
- border-radius :14px ;
+  background-color: rgb(242, 242, 255) !important;
+  border-radius: 14px;
 }
 
 .react-calendar__tile--now {
- background-color : rgba(207, 205, 255, 1) ; 
- border-radius :14px ;
+  background-color: rgba(207, 205, 255, 1);
+  border-radius: 14px;
 }
 
 .react-calendar__tile--now:hover,
-.react-calendar__tile--now:focus{
-   background-color : rgba(231, 231, 255, 1) !important; 
-   border-radius :14px ;
-   font-weight: 700;
+.react-calendar__tile--now:focus {
+  background-color: rgba(231, 231, 255, 1) !important;
+  border-radius: 14px;
+  font-weight: 700;
 }
 
 .highlight {
-  background-color: rgba(255,255,255,.5);
-  background-image: url('../assets/svg/star.svg');
-  background-blend-mode: multiply; 
+  background-color: rgba(255, 255, 255, 0.5);
+  background-image: url("../assets/svg/star.svg");
+  background-blend-mode: multiply;
   background-size: 70%;
-  background-repeat:no-repeat;
-  background-position:center;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .react-calendar {
-  border: none; 
+  border: none;
   width: 80%;
   height: 80%;
   display: flex;
   flex-direction: column;
-  justify-content:center ;
+  justify-content: center;
   border-radius: 20px;
   padding: 10px;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  height: auto;
+  background: #8383eb;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(194, 131, 223, 0.1);
+}
+
+.ranking-title {
+  text-align: center;
+  font-weight: 600;
+  color: #464646;
+  margin-bottom: 1.25rem;
+}
+
+.ranking-myRank {
+  color: rgba(96, 90, 241, 1);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.ranking-profile {
+  position: relative;
+  width: 1.625rem;
+  height: 1.625rem;
+  overflow: hidden;
+  border-radius: 50%;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.ranking-myLevel {
+  width: 1.125rem;
+  height: 1.125rem;
+  background-color: rgba(96, 90, 241, 1);
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.ranking-level {
+  width: 1.125rem;
+  height: 1.125rem;
+  background-color: rgba(159, 156, 240, 1);
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.ranking-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.flex-row-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
 .modal-overlay {
   position: fixed;
