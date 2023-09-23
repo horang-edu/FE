@@ -9,26 +9,26 @@ import Announcement from "../components/announcement/Announcement";
 import QA from "../components/announcement/QA";
 import Modal from "../components/mission/Modal";
 import Update from "../components/Update";
-import logo from '../assets/svg/alarm.svg'
+import logo from "../assets/svg/alarm.svg";
 
 function Home() {
   const [showModal, setShowModal] = useState(false);
   const tabData = [
-    { menu: "사용자 순위", content: <UserRanking />, type: 'userRank' },
-    { menu: "학교 별 순위", content: <SchoolRanking />, type: 'schoolRank' },
-    { menu: "학교 내 순위", content: <CampusRanking />, type: 'campusRank' },
+    { menu: "사용자 순위", content: <UserRanking />, type: "userRanking" },
+    { menu: "학교 별 순위", content: <SchoolRanking />, type: "schoolRanking" },
+    { menu: "학교 내 순위", content: <CampusRanking />, type: "campusRanking" },
   ];
 
   const announcement = [
-    { menu: "학급 공지사항", content: <Announcement />, type: 'notice' },
-    { menu: "Q & A", content: <QA />, type: 'question' },
-  ]
+    { menu: "학급 공지사항", content: <Announcement />, type: "notice" },
+    { menu: "Q & A", content: <QA />, type: "question" },
+  ];
 
   return (
-    <div class='w-full h-full flex flex-col justify-center items-center'>
-      <div class='flex ml-auto mt-[3.0625rem] mb-[0.9375rem] mr-[10%]'>
+    <div class="w-full h-full flex flex-col justify-center items-center">
+      <div class="flex ml-auto mt-[3.0625rem] mb-[0.9375rem] mr-[10%]">
         <div>
-          안녕하세요, <span class='font-semibold'>cozy 님!</span>
+          안녕하세요, <span class="font-semibold">cozy 님!</span>
         </div>
         <img src={logo} alt="배경" />
       </div>
@@ -51,7 +51,6 @@ function Home() {
           <Tab tabData={tabData} />
         </div>
       </div>
-
     </div>
   );
 }
