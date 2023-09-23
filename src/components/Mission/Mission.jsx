@@ -1,6 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-function Mission() {
+function Mission({ showModal, setShowModal }) {
+
+    const handleClick = () => {
+      setShowModal(true);
+    };
+
     return (
         <div class='mission-layout w-542 flex flex-row items-center bg-white'>
             {/* 일간미션 */}
@@ -11,7 +16,7 @@ function Mission() {
                         +10
                     </div>
                 </div>
-                <div class='mr-31'>찜 목록에 저장 후 복습하기</div>
+                <div class='mr-31 font-medium'>찜 목록에 저장 후 복습하기</div>
             </div>
             {/* 구역 나눔 */}
             <div class="border-l-2 border-color3 h-full"></div>
@@ -23,10 +28,10 @@ function Mission() {
                         +20
                     </div>
                 </div>
-                <div>질문 답변하기</div>
+                <div><span class='text-color6 underline underline-offset-2 mr-1 font-medium'>오늘</span>질문 답변하기</div>
             </div>
             {/* 모달 이동 버튼 */}
-            <button class='w-92 h-79 bg-color1 rounded-custom font-bold text-white text-lg shadow-custom ml-24'>확인하기</button>
+            <button onClick={handleClick} class='w-92 h-79 bg-color1 rounded-custom font-bold text-white text-lg shadow-custom ml-24'>확인하기</button>
         </div>
 
     )
