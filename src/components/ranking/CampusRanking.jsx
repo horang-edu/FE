@@ -16,9 +16,10 @@ function CampusRanking() {
   if (rankingError) return <div>교내 랭킹 데이터 처리 중 ERROR가 발생하였습니다.</div>;
 
   return (
-    <div className="w-full h-full overflow-hidden h-[375px]">
-      <h3 className="ranking-title mt-[1.5rem]">학교에서 나는 몇 위?</h3>
-      <div className="h-[66.3%] overflow-y-auto px-2">
+    <div className="w-full h-full overflow-hidden">
+      <h3 className="ranking-title">학교에서 나는 몇 위?</h3>
+      <div className="h-[74.9%] overflow-y-auto px-2">
+
         <div className="flex-row-center">
           <div className="flex items-center justify-between px-6 w-[67.5%] bg-color2 rounded-xl h-[3.875rem] shadow-myRanking">
             <img src={school} alt="학교아이콘" />

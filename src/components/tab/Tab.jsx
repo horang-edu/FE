@@ -6,11 +6,18 @@ function Tab({ tabData }) {
 
   const padding = {
     userRanking: "px-[2.625rem] py-5",
-    schoolRanking: "px-[8rem] py-5",
+    schoolRanking: "px-[5.5rem] py-5",
     campusRanking: "px-[2.625rem] py-5",
-    // campusRanking: "px-[4.5rem] py-5",
-    notice: "pb-[2.375rem]",
-    question: " pb-[2.375rem]",
+    notice: "px-[2.375rem] ",
+    question: "px-[1.875rem] pt-5 pb-[2.375rem]",
+  };
+
+  const h = {
+    userRanking: "h-[23.4375rem]",
+    schoolRanking: "h-[23.4375rem]",
+    campusRanking: "h-[23.4375rem]",
+    notice: "h-[12.8125rem]",
+    question: "h-[12.8125rem]",
   };
 
   return (
@@ -25,7 +32,7 @@ function Tab({ tabData }) {
           );
         })}
       </ul>
-      <div className={`${padding[type[currentTab]]} w-full rounded-custom shadow-custom bg-white`}>{tabData[currentTab].content}</div>
+      <div className={`${padding[type[currentTab]]} ${h[type[currentTab]]} w-full rounded-custom shadow-custom bg-white`}>{tabData[currentTab].content}</div>
     </div>
   );
 }
