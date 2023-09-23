@@ -17,8 +17,8 @@ function UserRanking() {
   console.log(ranking);
 
   return (
-    <div className="w-full h-full overflow-hidden">
-      <h3 className="ranking-title">나는 몇 위?</h3>
+    <div className="w-full h-full overflow-hidden h-[23.4375rem]">
+      <h3 className="ranking-title mt-[1.5rem]">나는 몇 위?</h3>
       <div className="h-[66.3%] overflow-y-auto px-2">
         <div className="flex items-center bg-color2 rounded-xl h-[3.875rem] shadow-myRanking mb-3">
           <div className="w-[21.3%] ranking-myRank flex-row-center">{data.rank}위</div>

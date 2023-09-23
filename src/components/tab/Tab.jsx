@@ -9,8 +9,8 @@ function Tab({ tabData }) {
     schoolRanking: "px-[8rem] py-5",
     campusRanking: "px-[2.625rem] py-5",
     // campusRanking: "px-[4.5rem] py-5",
-    notice: "px-[2.375rem] py-8",
-    question: "px-[1.875rem] pt-5 pb-[2.375rem]",
+    notice: "pb-[2.375rem]",
+    question: " pb-[2.375rem]",
   };
 
   return (

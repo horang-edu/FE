@@ -30,14 +30,14 @@ function Home() {
         <div>
           안녕하세요, <span class='font-semibold'>cozy 님!</span>
         </div>
-        <img src={logo} alt="배경" />
+        <img class='ml-2' src={logo} alt="배경" />
       </div>
 
       <div class="w-[62.1875rem] mb-[1.3125rem]">
         <Tab tabData={announcement} />
       </div>
       <div class='flex mb-[3.5rem]'>
-        <CalendarMission showModal={showModal} setShowModal={setShowModal} />
+        <CalendarMission showModal={showModal} setShowModal={setShowModal}/>
         <Mission showModal={showModal} setShowModal={setShowModal} />
       </div>
       {showModal && <Modal show={showModal} onClose={() => setShowModal(false)} />}
@@ -46,7 +46,7 @@ function Home() {
           <div class="text-24 font-semibold px-[1.3125rem] mb-[1.0625rem]">새로 업데이트 된 문제</div>
           <Update />
         </div>
-        <div className="w-[33.875rem] ml-[2.125rem]">
+        <div className="w-[33.875rem] ml-[2.125rem] h-[463px]">
           <h2 class="text-24 font-semibold px-[1.3125rem] mb-[1.0625rem]">순위 차트</h2>
           <Tab tabData={tabData} />
         </div>
