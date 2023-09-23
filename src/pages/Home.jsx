@@ -36,7 +36,7 @@ function Home() {
       <div class="w-[62.1875rem] mb-[1.3125rem]">
         <Tab tabData={announcement} />
       </div>
-      <div class="flex mb-[3.5rem]">
+      <div class='flex mb-[3.5rem]'>
         <CalendarMission showModal={showModal} setShowModal={setShowModal} />
         <Mission showModal={showModal} setShowModal={setShowModal} />
       </div>
