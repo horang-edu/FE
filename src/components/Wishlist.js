@@ -67,7 +67,6 @@ function Wishlist() {
 
         />
         <button onClick={handleAddWishlist}>과제 추가</button> */}
-
       </div>
     </div>
   );
