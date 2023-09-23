@@ -3,6 +3,7 @@ import React from 'react';
 function Mission({ showModal, setShowModal }) {
 
     const handleClick = () => {
+        
       setShowModal(true);
     };
 

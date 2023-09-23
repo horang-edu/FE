@@ -3,15 +3,15 @@ import AttendanceTab from "./AttendanceTab";
 import studyBackground from "../../assets/svg/studyBackground.svg";
 
 function Modal({ show, onClose }) {
-  const [activeTab, setActiveTab] = useState(1);
-  if (!show) {
-    return null;
-  }
-  const handleCloseClick = (e) => {
-    e.preventDefault();
-    onClose();
-  };
-
+    
+    const [activeTab, setActiveTab] = useState(1);
+    if (!show) {
+        return null;
+    }
+    const handleCloseClick = (e) => {
+        e.preventDefault();
+        onClose();
+    };
   return (
     <div class="modal-overlay">
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col" onClick={handleCloseClick}>
