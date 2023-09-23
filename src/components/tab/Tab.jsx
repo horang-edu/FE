@@ -13,7 +13,6 @@ function Tab({ tabData }) {
     question: "px-[1.875rem] pt-5 pb-[2.375rem]",
   };
 
-  
   return (
     <div>
       <ul className="flex ml-[1.4375rem]">

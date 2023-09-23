@@ -40,19 +40,16 @@ function Home() {
         <CalendarMission showModal={showModal} setShowModal={setShowModal} />
         <Mission showModal={showModal} setShowModal={setShowModal} />
       </div>
-      {showModal && (
-        <Modal show={showModal} onClose={() => setShowModal(false)} />
-      )}
-      <div class='flex'>
+      {showModal && <Modal show={showModal} onClose={() => setShowModal(false)} />}
+      <div class="flex">
         <div>
-          <div class='text-24 font-semibold px-[1.3125rem] mb-[1.0625rem]'>새로 업데이트 된 문제</div>
+          <div class="text-24 font-semibold px-[1.3125rem] mb-[1.0625rem]">새로 업데이트 된 문제</div>
           <Update />
         </div>
         <div className="w-[33.875rem] ml-[2.125rem]">
-          <h2 class='text-24 font-semibold px-[1.3125rem] mb-[1.0625rem]'>순위 차트</h2>
+          <h2 class="text-24 font-semibold px-[1.3125rem] mb-[1.0625rem]">순위 차트</h2>
           <Tab tabData={tabData} />
         </div>
-
       </div>
 
     </div>

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import AttendanceTab from '../mission/AttendanceTab';
-import studyBackground from '../../assets/svg/studyBackground.svg'
+import React, { useState } from "react";
+import AttendanceTab from "./AttendanceTab";
+import studyBackground from "../../assets/svg/studyBackground.svg";
 
 function Modal({ show, onClose }) {
     const [activeTab, setActiveTab] = useState(1);
@@ -82,5 +82,4 @@ function Modal({ show, onClose }) {
     );
 }
 
-
-export default Modal
+export default Modal;
