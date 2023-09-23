@@ -3,7 +3,7 @@ import Stamp from '../../assets/svg/Stamp.svg'
 
 function Calendar() {
     return (
-            <div class='mission-layout w-417 flex flex-row bg-color2 relative shadow-custom'>
+            <div class='mission-layout w-417 flex flex-row bg-color2 relative shadow-custom mr-[2.125rem]'>
                 <img class='absolute top-0 bottom-0 left-1/3 transform -translate-x-1/8 w-1/4 h-auto' src={Stamp} alt="stamp"
                  />
                 <div class='flex flex-col pl-25 pt-16 pb-19 justify-start relative'>
