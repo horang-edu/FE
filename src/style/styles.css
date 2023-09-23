@@ -240,11 +240,11 @@
   height: 1.625rem;
   overflow: hidden;
   border-radius: 50%;
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+}
+.ranking-profile img {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .ranking-myLevel {
@@ -275,6 +275,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
 
 .modal-overlay {
   position: fixed;

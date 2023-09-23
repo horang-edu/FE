@@ -20,8 +20,8 @@ function SchoolRanking() {
   if (rankingError) return <div>학교 랭킹 데이터 처리 중 ERROR가 발생하였습니다.</div>;
 
   return (
-    <div className="w-full h-full overflow-hidden">
-      <h3 className="ranking-title">우리 학교는 몇 위?</h3>
+    <div className="w-full h-full overflow-hidden h-[23.4375rem]">
+      <h3 className="ranking-title mt-[1.5rem]">우리 학교는 몇 위?</h3>
       <div className="w-full h-[66.3%] overflow-y-auto px-2">
         <div className="flex-row-center w-full">
           <div className="w-full px-[6%]">
