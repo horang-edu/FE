@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { ReactComponent as CheckboxChecked } from "../assets/true.svg";
 import { ReactComponent as CheckboxUnchecked } from "../assets/false.svg";
+import { fetchTasks, addTask } from "../apis/mystudyroom";
 
 function Todaystask() {
   const [tasks, setTasks] = useState([]);
@@ -10,10 +10,8 @@ function Todaystask() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "http://52.79.60.105:8080/api/homework"
-        );
-        setTasks(response.data.data);
+        const data = await fetchTasks();
+        setTasks(data);
       } catch (error) {
         console.error(error);
       }
@@ -24,15 +22,7 @@ function Todaystask() {
 
   const handleAddTask = async () => {
     try {
-      const response = await axios.post(
-        "http://52.79.60.105:8080/api/homework",
-        {
-          topic: newTask,
-        }
-      );
-
-      console.log(response);
-
+      await addTask(newTask);
       setNewTask("");
     } catch (error) {
       console.error(error);
@@ -62,11 +52,11 @@ function Todaystask() {
           type="text"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
-
-          class='mt-2 rounded-custom'
+          class="mt-2 rounded-custom"
         />
-        <button class='mt-2 ml-2' onClick={handleAddTask}>과제 추가</button>
-
+        <button class="mt-2 ml-2" onClick={handleAddTask}>
+          과제 추가
+        </button>
       </div>
     </div>
   );
