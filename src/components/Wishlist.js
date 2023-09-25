@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import { ReactComponent as DeleteButton } from "../assets/delete.svg";
+import { fetchWishlist, deleteWishlistItem } from "../apis/mystudyroom";
 
 function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
-  const [newWishlist, setNewWishlist] = useState("");
+  // const [newWishlist, setNewWishlist] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://52.79.60.105:8080/api/dibs");
-        setWishlist(response.data.data);
+        const data = await fetchWishlist();
+        setWishlist(data);
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchData();
-  }, [newWishlist]);
+  }, []);
 
   // const handleAddWishlist = async () => {
   //   try {
@@ -33,7 +34,7 @@ function Wishlist() {
 
   const handleDeleteWishlist = async (id) => {
     try {
-      await axios.delete(`http://52.79.60.105:8080/api/dibs/${id}`);
+      await deleteWishlistItem(id);
       const updatedWishlist = wishlist.filter((item) => item.id !== id);
       setWishlist(updatedWishlist);
     } catch (error) {
