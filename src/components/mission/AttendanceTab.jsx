@@ -33,6 +33,12 @@ function AttendanceTab() {
   async function handleCheckIn() {
     try{
       const newDate = value.toISOString().split('T')[0];
+      
+      if (attendanceDates.includes(newDate)) {
+        alert("이미 출석되었습니다!");
+        return;
+      }
+  
       const dates = await checkIn(newDate);
       setAttendanceDates(dates);
       alert("출석되었습니다!"); 
