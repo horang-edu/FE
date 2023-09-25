@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import axios from 'axios';
+// import axios from 'axios';
 import '../../style/styles.css';
+import { getAttendanceDates, checkIn } from '../../apis/attendance';
 
 function AttendanceTab() {
   
   const today = new Date();
   today.setHours(today.getHours());
-  const [value, onChange] = useState(new Date());
+  const [value, onChange] = useState(new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate())));
   const [attendanceDates, setAttendanceDates] = useState([]);
 
   function toLocalDateString(date) {
@@ -17,27 +18,26 @@ function AttendanceTab() {
   }
 
   useEffect(() => {
-    getAttendanceDates();
+    fetchAttendanceDates();
   }, [value]);
-
-  async function getAttendanceDates() {
-    try {
-      const response = await axios.get('http://52.79.60.105:8080/api/attendance');
-      console.log(response);
-      setAttendanceDates(response.data.data);
-      console.log(response.data.data);
-    } catch (error) {
-      console.error(error);
+ 
+  async function fetchAttendanceDates() {
+    try{
+      const dates = await getAttendanceDates();
+      setAttendanceDates(dates);
+    }catch(e){
+      console.log(e)
     }
   }
-
-  async function checkIn() {
-    try {
-      await axios.post(`http://52.79.60.105:8080/api/attendance?day=${value.toISOString().split('T')[0]}`);
-      getAttendanceDates();
+ 
+  async function handleCheckIn() {
+    try{
+      const newDate = value.toISOString().split('T')[0];
+      const dates = await checkIn(newDate);
+      setAttendanceDates(dates);
       alert("출석되었습니다!"); 
-    } catch (error) {
-      console.error(error);
+    }catch(e){
+      console.log(e)
     }
   }
 
@@ -51,7 +51,7 @@ function AttendanceTab() {
           attendanceDates.includes(toLocalDateString(date)) ? "highlight" : null}
       />
       <button class='mt-[1rem] w-139 h-49 bg-color1 rounded-custom font-bold text-white text-18'
-        onClick={checkIn}>출석하기</button>
+        onClick={handleCheckIn}>출석하기</button>
     </div>
   );
 }
