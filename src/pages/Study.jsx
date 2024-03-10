@@ -67,7 +67,7 @@ function Study() {
         const response = await axios.get("https://horang.site/api/video/last", {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTExQGRhdW0uY29tIiwiYXV0aCI6IlVTRVIiLCJ1c2VySWQiOjYsImV4cCI6MTcwMjY1MzE0OSwiaWF0IjoxNzAyNjQ5NTQ5fQ.ZaGAQ1XRBRaSnRGZu3Pm1n30VYPCGy-Q_N1RygSvlM8",
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTExQGRhdW0uY29tIiwiYXV0aCI6IlVTRVIiLCJ1c2VySWQiOjYsImV4cCI6MTcwOTA0NTI4MSwiaWF0IjoxNzA5MDQxNjgxfQ.U9givafPUqeesy7XTKXuB122UWD2kUFgEYwUzXrEJ04",
           },
         });
         const data = response.data.data;
@@ -91,7 +91,7 @@ function Study() {
           {
             headers: {
               Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTExQGRhdW0uY29tIiwiYXV0aCI6IlVTRVIiLCJ1c2VySWQiOjYsImV4cCI6MTcwMjY1MzE0OSwiaWF0IjoxNzAyNjQ5NTQ5fQ.ZaGAQ1XRBRaSnRGZu3Pm1n30VYPCGy-Q_N1RygSvlM8",
+                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTExQGRhdW0uY29tIiwiYXV0aCI6IlVTRVIiLCJ1c2VySWQiOjYsImV4cCI6MTcwOTA0NTI4MSwiaWF0IjoxNzA5MDQxNjgxfQ.U9givafPUqeesy7XTKXuB122UWD2kUFgEYwUzXrEJ04",
             },
           }
         );

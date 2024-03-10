@@ -17,7 +17,7 @@ function Video() {
           {
             headers: {
               Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTExQGRhdW0uY29tIiwiYXV0aCI6IlVTRVIiLCJ1c2VySWQiOjYsImV4cCI6MTcwMTk2NzE0OSwiaWF0IjoxNzAxOTYzNTQ5fQ.CdVRVQHYSVHdBFHQ4zH_dOZofNl4LkpwX8q2UJpBFBw",
+                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTExQGRhdW0uY29tIiwiYXV0aCI6IlVTRVIiLCJ1c2VySWQiOjYsImV4cCI6MTcwOTA0NTI4MSwiaWF0IjoxNzA5MDQxNjgxfQ.U9givafPUqeesy7XTKXuB122UWD2kUFgEYwUzXrEJ04",
             },
           }
         );
@@ -40,7 +40,7 @@ function Video() {
         {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTExQGRhdW0uY29tIiwiYXV0aCI6IlVTRVIiLCJ1c2VySWQiOjYsImV4cCI6MTcwMTk2NzE0OSwiaWF0IjoxNzAxOTYzNTQ5fQ.CdVRVQHYSVHdBFHQ4zH_dOZofNl4LkpwX8q2UJpBFBw",
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTExQGRhdW0uY29tIiwiYXV0aCI6IlVTRVIiLCJ1c2VySWQiOjYsImV4cCI6MTcwOTA0NTI4MSwiaWF0IjoxNzA5MDQxNjgxfQ.U9givafPUqeesy7XTKXuB122UWD2kUFgEYwUzXrEJ04",
           },
         }
       );
@@ -72,7 +72,7 @@ function Video() {
 
   const opts = {
     height: "700",
-    width: "1400",
+    width: "1200",
     playerVars: {
       start: videoPlayTime,
     },
@@ -80,11 +80,20 @@ function Video() {
 
   return (
     <div>
-      <YouTube
-        videoId={video.url}
-        opts={opts}
-        onStateChange={handleVideoStateChange}
-      />
+      <div>
+        <div>강의 제목</div>
+        <YouTube
+          videoId={video.url}
+          opts={opts}
+          onStateChange={handleVideoStateChange}
+        />
+        <div>강의 목록</div>
+      </div>
+      <div>
+        <div>학습 질문</div>
+        <div>찜하기</div>
+        <div>나의 강의 노트</div>
+      </div>
       <p>{video.description}</p>
       <p>Video Play Time: {Math.floor(videoPlayTime)}</p>
     </div>
