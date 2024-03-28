@@ -6,6 +6,9 @@ import axios from "axios";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Quill 스타일시트 import
 import "../style/styles.css";
+import { ReactComponent as QuestionIcon } from "../assets/svg/question.svg";
+import { ReactComponent as PickIcon } from "../assets/svg/pick.svg";
+import { ReactComponent as EditerIcon } from "../assets/svg/editer.svg";
 // import { eachDayOfInterval } from "date-fns";
 function Video() {
   const { id } = useParams();
@@ -16,6 +19,8 @@ function Video() {
   const [showQuestion, setShowQuestion] = useState(true);
   const [questionInput, setQuestionInput] = useState("");
   const [questionTitle, setQuestionTitle] = useState("");
+  const [prevShowNotes, setPrevShowNotes] = useState(true);
+  const [prevShowQuestion, setPrevShowQuestion] = useState(true);
 
   useEffect(() => {
     const fetchVideoPlayTime = async () => {
@@ -132,6 +137,23 @@ function Video() {
     }
   };
 
+  const handlePickVideo = async () => {
+    try {
+      const response = await axios.post(
+        `https://horang.site/api/video/zzim/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: "Bearer <your_access_token>",
+          },
+        }
+      );
+      console.log("Video picked successfully:", response.data);
+    } catch (error) {
+      console.error("Error picking video:", error);
+    }
+  };
+
   const handleQuestionInputChange = (e) => {
     setQuestionInput(e.target.value);
   };
@@ -140,15 +162,20 @@ function Video() {
     setQuestionTitle(e.target.value);
   };
 
+  const handleCancel = () => {
+    setShowNotes(prevShowNotes);
+    setShowQuestion(prevShowQuestion);
+  };
+
   return (
-    <div className="flex flex-col bg-red-400 m-20">
-      <div className="flex justify-center bg-blue-400">
-        <div className="bg-pink-300">
-          <div className="text-2xl font-bold text-464646 bg-yellow-500">
+    <div className="flex flex-col m-16 ">
+      <div className="flex justify-center">
+        <div>
+          <div className="text-2xl font-bold text-464646">
             {videoList.find((item) => item.id === parseInt(id)).title}
           </div>
-          <div className="flex">
-            <div>
+          <div className="flex h-52rem">
+            <div className="mr-12 h-52rem">
               <div className="rounded-youtube" style={roundedYouTubeStyle}>
                 <YouTube
                   videoId={video.url}
@@ -156,20 +183,20 @@ function Video() {
                   onStateChange={handleVideoStateChange}
                 />
               </div>
-              <div className="flex flex-row bg-red-500">
-                <div onClick={() => setShowQuestion(!showQuestion)}>
-                  학습 질문
+              <div className="flex flex-row justify-between mt-6 mb-6">
+                <div onClick={() => setShowQuestion()}>
+                  <QuestionIcon />
                 </div>
-                <div>찜하기</div>
-                <div onClick={() => setShowNotes(!showNotes)}>
-                  나의 강의 노트
+                <div>
+                  <PickIcon onClick={handlePickVideo} />
                 </div>
-
-                {/* <p>{video.description}</p>
-                <p>Video Play Time: {Math.floor(videoPlayTime)}</p> */}
+                <div onClick={() => setShowNotes()}>
+                  <EditerIcon />
+                </div>
               </div>
+              <div className="videodetail">gd</div>
             </div>
-            <div className="bg-green-500">
+            <div>
               {showNotes && showQuestion ? (
                 <div className="videolist">
                   <div className="videolist-font">강의 목록</div>
@@ -188,25 +215,49 @@ function Video() {
                     value={editorHtml}
                     onChange={handleChange}
                     modules={modules}
-                    style={{ width: "20rem", height: "45rem" }}
+                    style={{ height: "24rem" }}
                   />
+                  <div>
+                    <button
+                      className="videolist-question-button"
+                      onClick={handleCancel}
+                    >
+                      취소
+                    </button>
+                  </div>
                 </div>
               ) : (
-                <div className="videolist">
-                  <div>
+                <div className="videolist-question">
+                  <div className="text-#F99363 text-lg mt-16">학습 질문</div>
+                  <div className="videolist-question-border">
                     {videoList.find((item) => item.id === parseInt(id)).title}
                   </div>
                   <textarea
+                    className="videolist-question-border"
                     value={questionTitle}
                     onChange={handleQuestionTitleChange}
-                    placeholder="Enter your question title here..."
+                    placeholder="제목을 입력해주세요"
                   />
                   <textarea
+                    className="border border-gray rounded-lg p-10 h-full"
                     value={questionInput}
                     onChange={handleQuestionInputChange}
-                    placeholder="Enter your question here..."
+                    placeholder="내용을 입력해주세요 "
                   />
-                  <button onClick={handleSubmitQuestion}>Submit</button>
+                  <div className="flex flex-row items-center gap-16 mb-12 mt-3.5">
+                    <button
+                      className="videolist-question-button"
+                      onClick={handleCancel}
+                    >
+                      취소
+                    </button>
+                    <button
+                      className="videolist-question-button2"
+                      onClick={handleSubmitQuestion}
+                    >
+                      Submit
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
