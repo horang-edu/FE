@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import YouTube from "react-youtube";
 import axios from "axios";
 import ProgressBar from "react-progressbar";
+import "../style/styles.css";
+
 export const videoList = [
   {
     id: 1,
@@ -113,74 +115,72 @@ function Study() {
   const progressPercentage = (lastViewedVideo?.playTime / totalDuration) * 100;
   const progressPercentage2 = (playedVideo?.playTime / totalDuration2) * 100;
   return (
-    <div className="flex flex-col justify-center item-center p-20">
+    <div className="study-layout">
       <div>
-        <div className="flex flex-row justify-center item-center">
-          <div className="rounded-lg bg-orange-400 shadow-md w-1/2 h-240 flex-shrink-0 ">
-            <div>최근 학습한 영상</div>
-            <Link to={`/video/${lastViewedVideo?.id}`}>
-              <div>1단계: 0과 1로 이루어진 세상</div>
-              <div>{lastViewedVideo?.title}</div>
-            </Link>
-            <ProgressBar
-              completed={progressPercentage}
-              height="8px"
-              color="#907EFF"
-              style={{
-                width: "490px",
-                borderRadius: "10px",
-              }}
-            />
+        <div className="study-progresscontainer">
+          <div className="study-progress1">
+            <div className="study-table1">
+              <div className="study-table-font">최근 학습한 영상</div>
+              <Link to={`/video/${lastViewedVideo?.id}`}>
+                <div>{lastViewedVideo?.title}</div>
+              </Link>
+              <ProgressBar
+                completed={progressPercentage}
+                height="8px"
+                color="#87B7FF"
+                style={{
+                  width: "490px",
+                  height: "134px",
+                  borderRadius: "20px",
+                }}
+              />
+            </div>
           </div>
-          <div className="rounded-lg bg-green-500 w-3/6 h-240 flex-shrink-0 ">
-            <div>학습 중인 강의</div>
+          <div className="study-progress2">
+            <div className="study-table-font">학습 중인 강의</div>
             {studyingVideos.map((videoId) => (
               <Link key={videoId} to={`/video/${videoId}`}>
                 <div>{studyingVideos}</div>
               </Link>
             ))}
             <ProgressBar
-              completed={progressPercentage}
+              completed={progressPercentage2}
               height="8px"
-              color="#907EFF"
+              color="#87B7FF"
               style={{
-                width: "490px",
-                borderRadius: "10px",
+                width: "490spx",
+                height: "100px",
+                borderRadius: "20px",
               }}
             />
           </div>
         </div>
       </div>
-
       <div>
-        <div class="text-black font-noto-sans text-xl font-bold">
-          영상으로 학습하기
-        </div>
-        <div className="text-orange-500 font-noto-sans text-lg font-bold">
-          0단계
-        </div>
-        <div className="flex justify-center item-center w-full">
+        <div class="study-font1">영상으로 학습하기</div>
+        <div className="study-font2">0단계</div>
+        <div className="video-container">
           {firstFourVideos.map((video) => (
-            <div
-              key={video.id}
-              className="flex flex-row justify-center item-center w-screen"
-            >
+            <div key={video.id} className=" video-layout">
               <Link to={`/video/${video.id}`}>
                 <div
-                  className="flex flex-col justify-center items-center flex-shrink-0 rounded-2xl bg-white shadow-md"
-                  style={{ width: "400px", height: "350px" }}
+                  className="youtube-box"
+                  style={{
+                    width: "251px",
+                    height: "236px",
+                  }}
                 >
-                  <div className="rounded-lg overflow-hidden">
+                  <div className="youtube-layout">
                     <YouTube
                       videoId={video.url}
                       opts={{
-                        width: "350px",
-                        height: "200px",
+                        width: "251",
+                        height: "127px",
                         borderRadius: "20px",
                       }}
                     />
                   </div>
-                  <div>{video.title}</div>
+                  <div className="video-font1">{video.title}</div>
                   <div>{video.description}</div>
                 </div>
               </Link>
@@ -190,31 +190,27 @@ function Study() {
       </div>
 
       <div>
-        <div className="text-orange-500 font-noto-sans text-lg font-bold">
-          1 단계
-        </div>
-        <div className="flex justify-center item-center w-full">
+        <div className="study-font2">1 단계</div>
+        <div className="video-container">
           {remainingVideos.map((video) => (
-            <div
-              key={video.id}
-              className="flex flex-row justify-center item-center w-screen"
-            >
+            <div key={video.id} className="video-layout">
               <Link to={`/video/${video.id}`}>
                 <div
-                  className="flex flex-col justify-center items-center flex-shrink-0 rounded-2xl bg-white shadow-md"
-                  style={{ width: "400px", height: "300px" }}
+                  className="youtube-box"
+                  style={{ width: "251px", height: "236px" }}
                 >
-                  <div className="rounded-lg overflow-hidden">
+                  <div className="youtube-layout">
                     <YouTube
                       videoId={video.url}
                       opts={{
-                        width: "350px",
-                        height: "200px",
+                        width: "250px",
+                        height: "127px",
                         borderRadius: "20px",
+                        margin: "10px",
                       }}
                     />
                   </div>
-                  <div>{video.title}</div>
+                  <div className="video-font1">{video.title}</div>
                   <div>{video.description}</div>
                 </div>
               </Link>
