@@ -293,6 +293,7 @@
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+}
 
 /* study.jsx */
 
@@ -313,8 +314,7 @@
   display: flex;
   border-radius: 0.5rem;
   background-color: #f97316;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   width: 535px;
   height: 240px;
   flex-shrink: 0;
@@ -391,8 +391,7 @@
   flex-shrink: 0;
   border-radius: 1rem;
   background-color: #fff;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   margin-bottom: 1.875rem;
 }
 

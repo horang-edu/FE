@@ -27,6 +27,7 @@ function Router() {
         <Route element={<LoginLayout />}>
           <Route path="/login" element={<Login />} />
           <Route path="/emailLogin" element={<EmailLogin />} />
+          <Route path="/signup" element={<SignUP />} />
         </Route>
       </Routes>
     </BrowserRouter>
