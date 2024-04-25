@@ -4,6 +4,9 @@ import Dashboard from "../pages/Dashboard";
 import Layout from "../components/common/layout/Layout";
 import Practice from "../pages/Practice";
 import Study from "../pages/Study";
+import Login from "../components/login/Login";
+import EmailLogin from "../components/login/EmailLogin";
+import LoginLayout from "../components/common/layout/LoginLayout";
 
 function Router() {
   return (
@@ -14,6 +17,10 @@ function Router() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/practice" element={<Practice />} />
           <Route path="/study" element={<Study />} />
+        </Route>
+        <Route element={<LoginLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/emailLogin" element={<EmailLogin />} />
         </Route>
       </Routes>
     </BrowserRouter>
