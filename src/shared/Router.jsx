@@ -7,6 +7,9 @@ import Study from "../pages/Study";
 import Login from "../components/login/Login";
 import EmailLogin from "../components/login/EmailLogin";
 import LoginLayout from "../components/common/layout/LoginLayout";
+import Video from "../pages/Video";
+import Community from "../pages/Community";
+import SignUP from "../pages/SignUP";
 
 function Router() {
   return (
@@ -17,6 +20,9 @@ function Router() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/practice" element={<Practice />} />
           <Route path="/study" element={<Study />} />
+          <Route path="/video/:id" element={<Video />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/signup" element={<SignUP />} />
         </Route>
         <Route element={<LoginLayout />}>
           <Route path="/login" element={<Login />} />
