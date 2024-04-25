@@ -3,7 +3,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Noto Sans", "sans-serif"],
+        sans: ["Noto Sans", "sans-serif", "Jalnan"],
+        "yg-jalnan": ["yg-jalnan", "sans-serif"],
       },
       width: {
         40: "2.5rem",

@@ -10,8 +10,12 @@ import QA from "../components/announcement/QA";
 import Modal from "../components/mission/Modal";
 import Update from "../components/Update";
 import logo from "../assets/svg/alarm.svg";
+import isLoggedIn from "../atoms/loginAtom";
+import { useRecoilState } from "recoil";
 
 function Home() {
+  const [isLogin, setIsLogin] = useRecoilState(isLoggedIn);
+  console.log("홈 토큰있나여?????", isLogin);
   const [showModal, setShowModal] = useState(false);
   const tabData = [
     { menu: "사용자 순위", content: <UserRanking />, type: "userRanking" },
