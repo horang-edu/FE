@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-function WriteModal({ isOpen, onClose }) {
+function WriteModal({ isOpen, onClose, profileImages }) {
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
 
@@ -14,20 +14,38 @@ function WriteModal({ isOpen, onClose }) {
   };
 
   const handleSubmit = () => {
-    // API 호출하여 글 작성하기
-    const postData = { title, content };
+    // Create form data object
+    const formData = new FormData();
 
+    // Append post data
+    formData.append("postRequestDto.title", title);
+    formData.append("postRequestDto.content", content);
+    formData.append("postRequestDto.category", "");
+
+    // Check if profileImages is defined and not empty before appending
+    if (profileImages && profileImages.length > 0) {
+      // Append profile images
+      profileImages.forEach((image, index) => {
+        formData.append(`profileImage[${index}]`, image);
+      });
+    }
+
+    // API call
     axios
-      .post("your-api-endpoint", postData)
+      .post("your-api-endpoint", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          // Assuming you have a bearer token for authorization
+          // Authorization: `Bearer ${yourBearerToken}`,
+        },
+      })
       .then((response) => {
-        // 성공적으로 글이 작성되었을 때 할 작업 추가
+        // Handle success
         console.log("글이 성공적으로 작성되었습니다.", response.data);
-
-        // 모달 닫기
-        onClose();
+        onClose(); // Close modal
       })
       .catch((error) => {
-        // 에러 발생 시 처리
+        // Handle error
         console.error("글 작성 중 오류가 발생했습니다.", error);
       });
   };
@@ -62,20 +80,18 @@ function WriteModal({ isOpen, onClose }) {
           placeholder="내용을 입력해주세요."
         ></textarea>
         <div className="flex justify-center items-center gap-5">
-          <button
-            className="border border-gray font-bold py-2 px-4 rounded-xl"
-            style={{ width: "137px", height: "48px" }}
+          <div
             onClick={onClose}
+            className="flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border border-transparent hover:border-[#C0C0C0] bg-[#ffffff]"
           >
-            닫기
-          </button>
-          <button
-            className="bg-blue-500 text-white font-bold py-2 px-4 rounded-xl"
-            style={{ background: "#F99363", width: "137px", height: "48px" }}
+            <span className="">취소</span>
+          </div>
+          <div
             onClick={handleSubmit}
+            className="flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border border-transparent hover:border-[#F99363] bg-[#FFF8EF]"
           >
-            등록하기
-          </button>
+            <span className="">등록하기</span>
+          </div>
         </div>
       </div>
     </div>
