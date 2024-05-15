@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [name, setName] = useState("");
@@ -7,6 +8,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isTeacher, setIsTeacher] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,6 +36,7 @@ function SignUp() {
       );
       console.log("Response:", response);
       alert("회원가입 완료!");
+      navigate("/login");
     } catch (error) {
       console.error("Signup error:", error);
       alert("회원가입 실패!");
