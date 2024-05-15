@@ -22,7 +22,6 @@ function Router() {
           <Route path="/study" element={<Study />} />
           <Route path="/video/:id" element={<Video />} />
           <Route path="/community" element={<Community />} />
-          <Route path="/signup" element={<SignUP />} />
         </Route>
         <Route element={<LoginLayout />}>
           <Route path="/login" element={<Login />} />

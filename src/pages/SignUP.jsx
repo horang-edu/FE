@@ -1,82 +1,98 @@
 import React, { useState } from "react";
-import { ReactComponent as BG } from "../assets/svg/signUp.svg";
-import { ReactComponent as Cat } from "../assets/svg/signUpCat.svg";
+import axios from "axios";
 
-function SignUP() {
+function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isTeacher, setIsTeacher] = useState(false); // 선생님 여부 상태 추가
-  const [verificationCode, setVerificationCode] = useState(""); // 인증 번호 상태 추가
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isTeacher, setIsTeacher] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // 여기에 폼 제출 로직을 추가할 수 있습니다.
-    console.log("Submitted!");
-    console.log("Username:", username);
-    console.log("Password:", password);
-    if (isTeacher) {
-      console.log("Verification Code:", verificationCode);
+
+    if (!username || !password) {
+      alert("이름과 비밀번호를 입력해주세요.");
+      return;
+    }
+    if (password !== confirmPassword) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
+    const userData = {
+      username,
+      password,
+      role: isTeacher, // 'role' is set based on 'isTeacher'
+    };
+
+    try {
+      const response = await axios.post("https://example.com/api/signup", userData);
+      console.log("Response:", response);
+      alert("Signup successful!");
+    } catch (error) {
+      console.error("Signup error:", error);
+      alert("An error occurred during signup.");
     }
   };
 
   return (
     <div className="flex">
-      <div className="fix">
-        <BG />
-      </div>
       <div className="flex flex-col justify-center" style={{ margin: "auto" }}>
-        <div className="flex justify-between ">
-          <div>
-            <Cat />
-          </div>
-          <div className="flex justify-center items-center">
-            <div onClick={() => setIsTeacher(false)}>학생</div>
-            <div onClick={() => setIsTeacher(true)}>선생님</div>
-          </div>
+        <div className="absolute top-[-81px] left-[46%]">
+          <button
+            onClick={() => setIsTeacher(false)}
+            style={{ fontWeight: !isTeacher ? "bold" : "normal" }}
+            className="w-[100px] h-[54px] bg-[white] rounded-[20px] border-solid border-[1px] border-[#FFD7C3] font-yg-jalnan text-[#F99363] text-[18px]"
+          >
+            학생
+          </button>
+          <button
+            onClick={() => setIsTeacher(true)}
+            style={{ fontWeight: isTeacher ? "bold" : "normal" }}
+            className="w-[100px] h-[54px] bg-[white] rounded-[20px] border-solid border-[1px] border-[#FFD7C3] font-yg-jalnan text-[#F99363] text-[18px] ml-[10px]"
+          >
+            선생님
+          </button>
         </div>
+        {/* <div className="flex justify-between">
+          <div className="flex justify-center items-center">
+            <div onClick={() => setIsTeacher(false)} style={{ fontWeight: !isTeacher ? "bold" : "normal" }}>
+              학생
+            </div>
+            <div onClick={() => setIsTeacher(true)} style={{ fontWeight: isTeacher ? "bold" : "normal" }}>
+              선생님
+            </div>
+          </div>
+        </div> */}
         <div
           className="border"
           style={{
             width: "391px",
             height: "553px",
             padding: "77px 33px 77px 33px",
-            borderColor: "#f99363",
+            borderColor: "#FFD7C3",
             borderRadius: "10px",
             background: "#fff8ef",
           }}
         >
-          <div className="text-xl font-bold text-yellow-900 mb-9">
-            회원정보 입력
-          </div>
-          <div className="mb-3">아이디</div>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="border border-gray-300 rounded w-full p-2 mb-9"
-          />
-          <div className="mb-3">비밀번호</div>
+          <div className="text-xl font-yg-jalnan text-yellow-900 mb-9">회원정보 입력</div>
+          <input type="text" placeholder="이메일 주소 입력" value={username} onChange={(e) => setUsername(e.target.value)} className="w-full h-[2.8125rem] mb-9 text-[0.875rem] p-[0.75rem] rounded-[10px] border-solid border-[1px] border-[#FFD7C3]" />
           <input
             type="password"
-            placeholder="비밀번호 "
+            placeholder="8자리 이상 영문, 숫자, 특수문자 포함"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="border border-#f99363 rounded w-full p-2 mb-3"
+            className="w-full h-[2.8125rem] mb-3 text-[0.875rem] p-[0.75rem] rounded-[10px] border-solid border-[1px] border-[#FFD7C3]"
           />
           <input
             type="password"
-            placeholder="비밀번호 확인 "
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="border border-gray-300 rounded w-full p-2 mb-9"
+            placeholder="비밀번호 확인"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className="w-full h-[2.8125rem] mb-9 text-[0.875rem] p-[0.75rem] rounded-[10px] border-solid border-[1px] border-[#FFD7C3]"
           />
-          <button
-            onClick={handleSubmit}
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded block w-full h-11"
-          >
-            회원가입
+          <button onClick={handleSubmit} type="submit" className="w-full h-[2.8125rem] font-yg-jalnan text-white bg-[#FFD7C3] rounded-[10px] hover:bg-[#F99363]">
+            회원가입 완료
           </button>
         </div>
       </div>
@@ -84,4 +100,4 @@ function SignUP() {
   );
 }
 
-export default SignUP;
+export default SignUp;
