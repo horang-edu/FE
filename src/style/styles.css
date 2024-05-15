@@ -4,7 +4,7 @@
 @import "tailwindcss/utilities";
 
 .progress-layout {
-  width: 995px;
+  width: 1100.17px;
   height: 250px;
   background: #ffffff;
   border-radius: 10px;
@@ -13,7 +13,7 @@
 
 .progress-profile {
   padding: 20px 50px 20px 40px;
-  border-right: 1px solid #cfcdff;
+  border-right: 1px solid #f99363;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,7 +38,7 @@
   font-style: normal;
   font-weight: 700;
   font-size: 21px;
-  color: #605af1;
+  color: #f99363;
 }
 
 .profile-text2 {
@@ -60,14 +60,14 @@
 
 .mission-layout {
   height: 8.6875rem;
-  border: 0.125rem solid rgba(207, 205, 255, 1);
+  border: 0.125rem solid #f99363;
   border-radius: 0.625rem;
 }
 
 .tabMenu-active {
   padding: 0.75rem 0.9375rem;
   background-color: #ffffff;
-  color: #605af1;
+  color: #f99363;
   font-weight: 600;
   cursor: pointer;
   border-radius: 0.625rem 0.625rem 0rem 0rem;
@@ -91,12 +91,12 @@
 }
 
 .task-layout {
-  width: 465px;
-  max-height: 148px;
+  width: 528px;
+  height: 348px;
   overflow-y: auto;
   left: 280px;
   top: 532px;
-  min-height: 148px;
+  min-height: 348px;
 
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(159, 156, 240, 0.15);
@@ -290,9 +290,11 @@
 
 @font-face {
   font-family: "yg-jalnan";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff") format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
+}
 
 /* study.jsx */
 
