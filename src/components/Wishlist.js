@@ -45,7 +45,7 @@ function Wishlist() {
   return (
     <div>
       <div className="flex ">
-        <div className="text-black font-noto-sans font-semibold text-xl leading-118">
+        <div className="text-[#6F3A22] font-noto-sans font-semibold text-xl leading-118 mb-[3.7625rem]">
           찜 목록
         </div>
       </div>

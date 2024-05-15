@@ -28,13 +28,22 @@ function Tab({ tabData }) {
         {tabData.map((item, index) => {
           type.push(item.type);
           return (
-            <li onClick={() => setCurrentTab(index)} className={index === currentTab ? "tabMenu-active" : "tabMenu"}>
+            <li
+              onClick={() => setCurrentTab(index)}
+              className={index === currentTab ? "tabMenu-active" : "tabMenu"}
+            >
               {item.menu}
             </li>
           );
         })}
       </ul>
-      <div className={`${padding[type[currentTab]]} ${h[type[currentTab]]} w-full rounded-custom shadow-custom bg-white`}>{tabData[currentTab].content}</div>
+      <div
+        className={`${padding[type[currentTab]]} ${
+          h[type[currentTab]]
+        } w-[33rem] rounded-custom shadow-custom bg-white`}
+      >
+        {tabData[currentTab].content}
+      </div>
     </div>
   );
 }

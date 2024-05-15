@@ -2,7 +2,7 @@ import React from "react";
 import Todaystask from "../components/Todaystask";
 import Wishlist from "../components/Wishlist";
 import Progress from "../components/Progress";
-import bg from "../assets/img/dashboradimg.png";
+// import bg from "../assets/img/dashboradimg.png";
 import Question from "../components/qna/Question";
 import Answer from "../components/qna/Answer";
 import Tab from "../components/tab/Tab";
@@ -13,18 +13,23 @@ function Dashboard() {
   ];
 
   return (
-    <div className="reletive w-full h-full bg-gray-100">
-      <img src={bg} alt="s" className="absolute right-0 bottom-0" />
+    <div className="reletive w-full h-full bg-gray-100 bg-[#FFF8EF]">
+      {/* <img src={bg} alt="s" className="absolute right-0 bottom-0" /> */}
       <div className="flex-all-center ">
-        <div className="text-indigo-600 font-bold text-2xl pt-20">나의 학습방</div>
+        <div className="text-indigo-600 font-bold text-2xl pt-20">
+          {/* 나의 학습방 */}
+        </div>
         <div>
           <Progress />
           <div className="flex">
-            <div className="mr-[4.0625rem]">
-              <Todaystask />
+            <div className="mr-[2.75rem]">
+              {/* <Todaystask /> */}
               <Wishlist />
             </div>
             <div className="w-[29.0625rem]">
+              <div className="text-[#6F3A22] font-noto-sans font-semibold text-xl mb-[0.8rem]">
+                내질문
+              </div>
               <Tab tabData={tabData} />
             </div>
           </div>
