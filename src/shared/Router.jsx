@@ -10,6 +10,7 @@ import LoginLayout from "../components/common/layout/LoginLayout";
 import Video from "../pages/Video";
 import Community from "../pages/Community";
 import SignUP from "../pages/SignUP";
+import Dictionary from "../components/dictionary/Dictionary";
 
 function Router() {
   return (
@@ -22,6 +23,7 @@ function Router() {
           <Route path="/study" element={<Study />} />
           <Route path="/video/:id" element={<Video />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/dictionary" element={<Dictionary />} />
         </Route>
         <Route element={<LoginLayout />}>
           <Route path="/login" element={<Login />} />
