@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
-import LoginInput from "../logininput/LoginInput";
 import useForm from "../../hook/useForm";
 import { useMutation } from "react-query";
 import emailLogin from "../../apis/login";
-import { useRecoilState } from "recoil";
-import isLoggedIn from "../../atoms/loginAtom";
 import { useNavigate } from "react-router-dom";
 
 function EmailLogin() {
@@ -12,7 +9,6 @@ function EmailLogin() {
     email: "",
     password: "",
   };
-  const [isLogin, setIsLogin] = useRecoilState(isLoggedIn);
   const [form, handleFormChange, resetForm] = useForm(initialState);
   const { email, password } = form;
   const navigate = useNavigate();
@@ -21,8 +17,6 @@ function EmailLogin() {
     onSuccess: (result) => {
       if (result.data.statusCode === "OK") {
         alert("로그인에 성공하였습니다.");
-        // console.log("토큰", result.token);
-        setIsLogin(result.token);
         navigate("/");
       }
     },
@@ -35,10 +29,6 @@ function EmailLogin() {
     }
     mutation.mutate(form);
   };
-
-  useEffect(() => {
-    console.log("로그인플래그", isLogin);
-  }, [isLogin]);
 
   return (
     <div className="px-[2.4375rem] py-[4.875rem]">
