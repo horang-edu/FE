@@ -2,7 +2,7 @@ import instance from "./instance";
 
 const emailLogin = async (payload) => {
   try {
-    const res = await instance.post("/api/user/login", payload);
+    const res = await instance.post("http://13.209.48.232:8080/api/user/login", payload);
     // console.log(response.headers.authorization);
     const response = {
       token: res.headers.authorization,
