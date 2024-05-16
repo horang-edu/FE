@@ -34,7 +34,8 @@ export const addTask = async (newTask) => {
 
 export const fetchWishlist = async () => {
   try {
-    const response = await instance.get("/api/dibs");
+    const response = await instance.get("api/video/zzim/list");
+    console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.error(error);
