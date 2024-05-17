@@ -7,7 +7,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isTeacher, setIsTeacher] = useState(false);
+  const [isTeacher, setIsTeacher] = useState(true);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -31,7 +31,7 @@ function SignUp() {
 
     try {
       const response = await axios.post(
-        "http://13.209.48.232:8080/api/user/signup",
+        "http://3.34.10.94:8080/api/user/signup",
         userData
       );
       console.log("Response:", response);
@@ -48,7 +48,7 @@ function SignUp() {
       <div className="flex flex-col justify-center" style={{ margin: "auto" }}>
         <div className="absolute top-[-81px] left-[46%]">
           <button
-            onClick={() => setIsTeacher(false)}
+            onClick={() => setIsTeacher(true)}
             style={{
               fontWeight: !isTeacher ? "bold" : "normal",
               backgroundColor: !isTeacher ? "#F99363" : "#FFF8EF",
@@ -60,7 +60,7 @@ function SignUp() {
             학생
           </button>
           <button
-            onClick={() => setIsTeacher(true)}
+            onClick={() => setIsTeacher(false)}
             style={{
               fontWeight: isTeacher ? "bold" : "normal",
               backgroundColor: isTeacher ? "#F99363" : "#FFF8EF",
