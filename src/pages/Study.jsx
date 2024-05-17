@@ -4,6 +4,7 @@ import YouTube from "react-youtube";
 import axios from "axios";
 import ProgressBar from "react-progressbar";
 import "../style/styles.css";
+import { getCookie } from "../utils/cookie";
 
 export const videoList = [
   {
@@ -66,12 +67,15 @@ function Study() {
   useEffect(() => {
     const fetchLastViewedVideo = async () => {
       try {
-        const response = await axios.get("https://horang.site/api/video/last", {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTExQGRhdW0uY29tIiwiYXV0aCI6IlVTRVIiLCJ1c2VySWQiOjYsImV4cCI6MTcwOTA0NTI4MSwiaWF0IjoxNzA5MDQxNjgxfQ.U9givafPUqeesy7XTKXuB122UWD2kUFgEYwUzXrEJ04",
-          },
-        });
+        const token = getCookie("token");
+        const response = await axios.get(
+          "http://3.34.10.94:8080/api/video/last",
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
         const data = response.data.data;
         setLastViewedVideo(data);
         setTotalDuration(300);
@@ -88,16 +92,17 @@ function Study() {
   useEffect(() => {
     const fetchPlayedVideo = async () => {
       try {
+        const token = getCookie("token");
         const response = await axios.get(
-          "https://horang.site/api/video/played",
+          "http://3.34.10.94:8080/api/video/played",
           {
             headers: {
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTExQGRhdW0uY29tIiwiYXV0aCI6IlVTRVIiLCJ1c2VySWQiOjYsImV4cCI6MTcwOTA0NTI4MSwiaWF0IjoxNzA5MDQxNjgxfQ.U9givafPUqeesy7XTKXuB122UWD2kUFgEYwUzXrEJ04",
+              Authorization: `${token}`,
             },
           }
         );
         const data = response.data.data;
+        console.log(data);
         setPlayedVideo(data);
         setTotalDuration2(300);
         console.log(data);
@@ -122,7 +127,7 @@ function Study() {
             <div className="study-table1">
               <div className="study-table-font">최근 학습한 영상</div>
               <Link to={`/video/${lastViewedVideo?.id}`}>
-                <div>{lastViewedVideo?.title}</div>
+                <div>강의{lastViewedVideo?.id}</div>
               </Link>
               <ProgressBar
                 completed={progressPercentage}
@@ -130,8 +135,10 @@ function Study() {
                 color="#87B7FF"
                 style={{
                   width: "490px",
-                  height: "134px",
+                  height: "8px",
+                  backgroundColor: "#F2F2F2",
                   borderRadius: "20px",
+                  overflow: "hidden",
                 }}
               />
             </div>
@@ -143,16 +150,23 @@ function Study() {
                 <div>{studyingVideos}</div>
               </Link>
             ))}
+            강의
             <ProgressBar
-              completed={progressPercentage2}
+              completed={progressPercentage}
               height="8px"
               color="#87B7FF"
               style={{
                 width: "490spx",
-                height: "100px",
+                height: "8px",
+                overflow: "hidden",
+                backgroundColor: "#F2F2F2",
                 borderRadius: "20px",
               }}
             />
+            <div>
+              {/* {lastViewedVideo?.playTime / 60}
+              {totalDuration / 60} */}
+            </div>
           </div>
         </div>
       </div>

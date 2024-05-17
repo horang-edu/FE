@@ -6,9 +6,10 @@ import axios from "axios";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Quill 스타일시트 import
 import "../style/styles.css";
-import { ReactComponent as QuestionIcon } from "../assets/svg/question.svg";
-import { ReactComponent as PickIcon } from "../assets/svg/pick.svg";
-import { ReactComponent as EditerIcon } from "../assets/svg/editer.svg";
+// import { ReactComponent as QuestionIcon } from "../assets/svg/question.svg";
+// import { ReactComponent as PickIcon } from "../assets/svg/pick.svg";
+// import { ReactComponent as EditerIcon } from "../assets/svg/editer.svg";
+import { getCookie } from "../utils/cookie";
 // import { eachDayOfInterval } from "date-fns";
 function Video() {
   const { id } = useParams();
@@ -25,12 +26,12 @@ function Video() {
   useEffect(() => {
     const fetchVideoPlayTime = async () => {
       try {
+        const token = getCookie("token");
         const response = await axios.get(
-          `https://horang.site/api/video/${id}`,
+          `http://3.34.10.94:8080/api/video/${id}`,
           {
             headers: {
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTExQGRhdW0uY29tIiwiYXV0aCI6IlVTRVIiLCJ1c2VySWQiOjYsImV4cCI6MTcwOTA0NTI4MSwiaWF0IjoxNzA5MDQxNjgxfQ.U9givafPUqeesy7XTKXuB122UWD2kUFgEYwUzXrEJ04",
+              Authorization: `${token}`,
             },
           }
         );
@@ -47,13 +48,13 @@ function Video() {
 
   const updateVideoPlayTime = async (newPlayTime) => {
     try {
+      const token = getCookie("token");
       await axios.patch(
-        "https://horang.site/api/video",
+        "http://3.34.10.94:8080/api/video",
         { id: parseInt(id), playTime: Math.floor(newPlayTime) },
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTExQGRhdW0uY29tIiwiYXV0aCI6IlVTRVIiLCJ1c2VySWQiOjYsImV4cCI6MTcwOTA0NTI4MSwiaWF0IjoxNzA5MDQxNjgxfQ.U9givafPUqeesy7XTKXuB122UWD2kUFgEYwUzXrEJ04",
+            Authorization: `${token}`,
           },
         }
       );
@@ -77,9 +78,9 @@ function Video() {
     return <div>Video not found.</div>;
   }
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
   const modules = {
     toolbar: [
@@ -115,19 +116,26 @@ function Video() {
     overflow: "hidden",
   };
 
+  // 수정해야함
   const handleSubmitQuestion = async () => {
     try {
-      const response = await axios.post(
-        "https://horang.site/api/questions",
-        {
+      const token = getCookie("token");
+      const formData = new FormData();
+      formData.append(
+        "postRequestDto",
+        JSON.stringify({
           title: questionTitle,
-          question: questionInput,
-          videoId: parseInt(id),
-        },
+          content: questionInput,
+          category: "",
+        })
+      );
+      const response = await axios.post(
+        "http://3.34.10.94:8080/api/questions",
+        formData,
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MTExQGRhdW0uY29tIiwiYXV0aCI6IlVTRVIiLCJ1c2VySWQiOjYsImV4cCI6MTcwOTA0NTI4MSwiaWF0IjoxNzA5MDQxNjgxfQ.U9givafPUqeesy7XTKXuB122UWD2kUFgEYwUzXrEJ04",
+            Authorization: `${token}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -139,16 +147,18 @@ function Video() {
 
   const handlePickVideo = async () => {
     try {
+      const token = getCookie("token");
       const response = await axios.post(
-        `https://horang.site/api/video/zzim/${id}`,
+        `http://3.34.10.94:8080/api/video/zzim/${id}`,
         {},
         {
           headers: {
-            Authorization: "Bearer <your_access_token>",
+            Authorization: `${token}`,
           },
         }
       );
       console.log("Video picked successfully:", response.data);
+      alert("찜등록되었습니다.");
     } catch (error) {
       console.error("Error picking video:", error);
     }
@@ -184,17 +194,28 @@ function Video() {
                 />
               </div>
               <div className="flex flex-row justify-between mt-6 mb-6">
-                <div onClick={() => setShowQuestion()}>
-                  <QuestionIcon />
+                <div
+                  className="text-xl text-[#F99363] flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border border-[#FFF8EF] bg-[#FFD7C3] hover:bg-[#F99363] hover:text-[#FFD7C3]"
+                  onClick={() => setShowQuestion()}
+                >
+                  학습 질문
                 </div>
                 <div>
-                  <PickIcon onClick={handlePickVideo} />
+                  <div
+                    className="text-xl text-[#F99363] flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border border-[#FFF8EF] bg-[#FFD7C3] hover:bg-[#F99363] hover:text-[#FFD7C3]"
+                    onClick={handlePickVideo}
+                  >
+                    찜하기
+                  </div>
                 </div>
-                <div onClick={() => setShowNotes()}>
-                  <EditerIcon />
+                <div
+                  className="text-xl text-[#F99363] flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border border-[#FFF8EF] bg-[#FFD7C3] hover:bg-[#F99363] hover:text-[#FFD7C3]"
+                  onClick={() => setShowNotes()}
+                >
+                  나의 강의 노트
                 </div>
               </div>
-              <div className="videodetail">gd</div>
+              <div className="videodetail"></div>
             </div>
             <div>
               {showNotes && showQuestion ? (
