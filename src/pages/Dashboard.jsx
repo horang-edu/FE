@@ -9,7 +9,7 @@ import Tab from "../components/tab/Tab";
 function Dashboard() {
   const tabData = [
     { menu: "내가 한 질문", content: <Question />, type: "myquestion" },
-    { menu: "내가 답변한 질문", content: <Answer />, type: "myquestion" },
+    // { menu: "내가 답변한 질문", content: <Answer />, type: "myquestion" },
   ];
 
   return (
