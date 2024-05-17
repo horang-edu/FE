@@ -3,13 +3,14 @@ import { ReactComponent as Profile } from "../assets/svg/profile.svg";
 import ProgressBar from "react-progressbar";
 import { fetchUserData } from "../apis/mystudyroom";
 
+
 function Progress() {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (userId) => {
       try {
-        const data = await fetchUserData(8);
+        const data = await fetchUserData(userId);
         setUserData(data);
         console.log(data);
       } catch (error) {

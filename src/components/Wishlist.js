@@ -2,57 +2,30 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ReactComponent as DeleteButton } from "../assets/delete.svg";
 import { fetchWishlist, deleteWishlistItem } from "../apis/mystudyroom";
-import { useRecoilState } from "recoil";
-import isLoggedIn from "../atoms/loginAtom";
+import { getCookie } from "../utils/cookie";
+import { Link } from "react-router-dom";
 function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
-  const [isLogin, setIsLogin] = useRecoilState(isLoggedIn);
-  console.log("홈 토큰있나여?????", isLogin);
-  // Recoil로부터 토큰을 가져옴
-
-  // const [newWishlist, setNewWishlist] = useState("");
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const data = await fetchWishlist();
-  //       setWishlist(data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://13.209.48.232:8080/api/video/zzim/list", {
+        const token = getCookie("token")
+        const response = await axios.get("http://3.34.10.94:8080/api/video/zzim/list", {
           headers: {
-            Authorization: ``  // 토큰을 Authorization 헤더에 추가
+            Authorization: `${token}`  // 토큰을 Authorization 헤더에 추가
           }
         });
-        setWishlist(response.data);
+        setWishlist(response.data.data);
+        console.log(response.data);
       } catch (error) {
         console.error(error);
+
       }
     };
 
     fetchData();
   }, []);
-
-  // const handleAddWishlist = async () => {
-  //   try {
-  //     await axios.post("http://52.79.60.105:8080/api/dibs", {
-  //       topic: newWishlist,
-  //     });
-  //     setWishlist([...wishlist, { topic: newWishlist }]);
-  //     setNewWishlist("");
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
   const handleDeleteWishlist = async (id) => {
     try {
@@ -72,15 +45,22 @@ function Wishlist() {
         </div>
       </div>
       <div className="task-layout">
-        {wishlist.map((wish, index) => (
-          <div className="task-text" key={index}>
-            <div className="task-title flex items-center">
-              <div className="text-lg">{wish.topic}</div>
-              <div className="text-base">{wish.checkBox}</div>
+        {Array.isArray(wishlist) && wishlist.length === 0 ? (
+          <div className="text-lg text-gray">찜한 리스트가 없습니다</div>
+        ) : (
+          Array.isArray(wishlist) && wishlist.map((wish, index) => (
+            <div className="task-text" key={index}>
+              <div className="task-title flex items-center">
+                {/* <div className="text-lg">{wish.topic}</div> */}
+                <Link to={`/video/${wish}`} className="text-lg">
+                  강의 {wish}
+                </Link>
+                {/* <div className="text-base">{wish.checkBox}</div> */}
+              </div>
+              {/* <DeleteButton onClick={() => handleDeleteWishlist(wish.id)} /> */}
             </div>
-            <DeleteButton onClick={() => handleDeleteWishlist(wish.id)} />
-          </div>
-        ))}
+          ))
+        )}
       </div>
       <div>
         {/* <input

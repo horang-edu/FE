@@ -1,23 +1,42 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 function Question() {
+  const [posts, setPosts] = useState([]);
+  const postId = useParams();
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const response = await fetch(`/api/post/class/${postId}`);
+        const data = await response.json();
+        if (response.ok) {
+          setPosts([data.data]); // Set posts array with the fetched post
+        } else {
+          console.error("Failed to fetch post:", data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching post:", error);
+      }
+    };
+
+    fetchPost();
+  }, [postId]);
+
   return (
-    <div class="py-[2.375rem] flex flex-col">
-      <div class="flex flex-row mb-[1.625rem]">
-        <div class="text-16 font-medium">•</div>
-        <div class="text-16 w-[49.5625rem] px-3.5">질문있어요. 오늘 일간미션 도와주세요 ㅜㅜ..</div>
-        <div class="text-gray">23/09/01</div>
-      </div>
-      <div class="flex flex-row mb-[1.625rem]">
-        <div class="text-16 font-medium">•</div>
-        <div class="text-16 w-[49.5625rem] px-3.5">다른 풀이법도 아는 사람?</div>
-        <div class="text-gray">23/09/07</div>
-      </div>
-      <div class="flex flex-row">
-        <div class="text-16 font-medium">•</div>
-        <div class="text-16 w-[49.5625rem] px-3.5">어제 진도 공부 안 하면 2단계 통과가 어렵나??</div>
-        <div class="text-gray">23/09/08</div>
-      </div>
+    <div className="py-[2.375rem] flex flex-col">
+      {posts.length === 0 ? (
+        <div className="text-gray">질문한 게시물이 없습니다.</div>
+      ) : (
+        posts.map((post) => (
+          <div key={post.id} className="flex flex-row mb-[1.625rem]">
+            <div className="text-16 font-medium">•</div>
+            <div className="text-16 w-[49.5625rem] px-3.5">{post.title}</div>
+            <div className="text-gray">{post.created}</div>
+          </div>
+        ))
+      )}
     </div>
   );
 }
