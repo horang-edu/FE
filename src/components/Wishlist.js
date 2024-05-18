@@ -2,13 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ReactComponent as DeleteButton } from "../assets/delete.svg";
 import { fetchWishlist, deleteWishlistItem } from "../apis/mystudyroom";
-import { useRecoilState } from "recoil";
-import isLoggedIn from "../atoms/loginAtom";
 function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
-  const [isLogin, setIsLogin] = useRecoilState(isLoggedIn);
-  console.log("홈 토큰있나여?????", isLogin);
-  // Recoil로부터 토큰을 가져옴
 
   // const [newWishlist, setNewWishlist] = useState("");
 
@@ -30,8 +25,8 @@ function Wishlist() {
       try {
         const response = await axios.get("http://13.209.48.232:8080/api/video/zzim/list", {
           headers: {
-            Authorization: ``  // 토큰을 Authorization 헤더에 추가
-          }
+            Authorization: ``, // 토큰을 Authorization 헤더에 추가
+          },
         });
         setWishlist(response.data);
       } catch (error) {
@@ -67,9 +62,7 @@ function Wishlist() {
   return (
     <div>
       <div className="flex ">
-        <div className="text-[#6F3A22] font-noto-sans font-semibold text-xl leading-118 mb-[3.7625rem]">
-          찜 목록
-        </div>
+        <div className="text-[#6F3A22] font-noto-sans font-semibold text-xl leading-118 mb-[3.7625rem]">찜 목록</div>
       </div>
       <div className="task-layout">
         {wishlist.map((wish, index) => (
