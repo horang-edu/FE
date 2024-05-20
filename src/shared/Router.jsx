@@ -11,6 +11,7 @@ import Video from "../pages/Video";
 import Community from "../pages/Community";
 import SignUP from "../pages/SignUP";
 import Dictionary from "../components/dictionary/Dictionary";
+import Post from "../components/Post";
 
 function Router() {
   return (
@@ -23,6 +24,7 @@ function Router() {
           <Route path="/study" element={<Study />} />
           <Route path="/video/:id" element={<Video />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/post/:id" element={<Post />} />
           <Route path="/dictionary" element={<Dictionary />} />
         </Route>
         <Route element={<LoginLayout />}>

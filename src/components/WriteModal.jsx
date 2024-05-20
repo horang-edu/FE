@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { getCookie } from "../utils/cookie";
 
-function WriteModal({ isOpen, onClose, profileImages }) {
-  const [title, setTitle] = React.useState("");
-  const [content, setContent] = React.useState("");
+function WriteModal({ isOpen, onClose, category }) {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -14,29 +15,20 @@ function WriteModal({ isOpen, onClose, profileImages }) {
   };
 
   const handleSubmit = () => {
-    // Create form data object
-    const formData = new FormData();
-
-    // Append post data
-    formData.append("postRequestDto.title", title);
-    formData.append("postRequestDto.content", content);
-    formData.append("postRequestDto.category", "");
-
-    // Check if profileImages is defined and not empty before appending
-    if (profileImages && profileImages.length > 0) {
-      // Append profile images
-      profileImages.forEach((image, index) => {
-        formData.append(`profileImage[${index}]`, image);
-      });
-    }
+    // Create postRequestDto
+    const token = getCookie("token");
+    const postRequestDto = {
+      title: title,
+      content: content,
+      category: category,
+    };
 
     // API call
     axios
-      .post("your-api-endpoint", formData, {
+      .post("http://3.34.10.94:8080/api/post", postRequestDto, {
         headers: {
-          "Content-Type": "multipart/form-data",
-          // Assuming you have a bearer token for authorization
-          // Authorization: `Bearer ${yourBearerToken}`,
+          Authorization: `${token}`, // Added "Bearer" prefix
+          "Content-Type": "application/json", // Set content type to JSON
         },
       })
       .then((response) => {
