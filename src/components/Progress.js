@@ -2,22 +2,42 @@ import React, { useEffect, useState } from "react";
 import { ReactComponent as Profile } from "../assets/svg/profile.svg";
 import ProgressBar from "react-progressbar";
 import { fetchUserData } from "../apis/mystudyroom";
+// import { useParams } from "react-router-dom";
+import { getCookie } from "../utils/cookie";
+import axios from "axios";
 
 
 function Progress() {
   const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true); // Added loading state
+
+  // const id = useParams();
 
   useEffect(() => {
-    const fetchData = async (userId) => {
+    const fetchUser = async () => {
       try {
-        const data = await fetchUserData(userId);
-        setUserData(data);
-        console.log(data);
+        const token = await getCookie("token");
+        if (token) {
+          const response = await axios.get(`http://3.34.10.94:8080/api/user`, {
+            headers: {
+              Authorization: `${token}`,
+            },
+          });
+          if (response.data.statusCode === "OK") {
+            setUserData(response.data);
+
+          }
+        } else {
+          console.error("Token is null");
+        }
       } catch (error) {
-        console.log(error);
+        console.error("Failed to fetch user:", error);
+      } finally {
+        setLoading(false);
       }
     };
-    fetchData();
+
+    fetchUser();
   }, []);
 
   // Default values for progress if user data is not available
@@ -35,12 +55,16 @@ function Progress() {
   const user = userData || defaultUserData;
 
   // Calculate remaining percent
-  const remainingPercent = user ? 100 - user.data.progress : null;
+  const remainingPercent = 100 - user.data.exp;
+
+  if (loading) {
+    return <div>Loading...</div>; // Render loading state if data is still being fetched
+  }
 
   return (
     <div className="mb-8">
       <div className="flex justify-between p-3">
-        <div class="text-[#6F3A22] font-noto-sans font-semibold text-xl leading-118">
+        <div className="text-[#6F3A22] font-noto-sans font-semibold text-xl leading-118">
           학습 진도율
         </div>
         <div>
@@ -54,7 +78,7 @@ function Progress() {
             <Profile />
             <div className="profile-text">
               <div className="flex items-center text-center">
-                <div class="w-16 h-16 flex-shrink-0 border-4 border-[#F99363] flex items-center justify-center text-center rounded-sm bg-[#F99363] text-white text-xs font-bold mr-1 ">
+                <div className="w-16 h-16 flex-shrink-0 border-4 border-[#F99363] flex items-center justify-center text-center rounded-sm bg-[#F99363] text-white text-xs font-bold mr-1 ">
                   {user.data.level}
                 </div>
                 <div className="text-black font-noto-sans text-l font-semibold leading-118">
@@ -75,7 +99,7 @@ function Progress() {
               </div>
               <div className="flex flex-row justify-end items-center">
                 <span className="text-base text-[#F99363] font-medium">
-                  {user.data.progress}
+                  {user.data.exp}
                 </span>
                 <span className="text-xs font-normal">/100</span>
               </div>

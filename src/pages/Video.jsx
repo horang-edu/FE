@@ -18,8 +18,8 @@ function Video() {
   const [editorHtml, setEditorHtml] = useState("");
   const [showNotes, setShowNotes] = useState(true);
   const [showQuestion, setShowQuestion] = useState(true);
-  const [questionInput, setQuestionInput] = useState("");
-  const [questionTitle, setQuestionTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [title, setTitle] = useState("");
   const [prevShowNotes, setPrevShowNotes] = useState(true);
   const [prevShowQuestion, setPrevShowQuestion] = useState(true);
 
@@ -117,32 +117,31 @@ function Video() {
   };
 
   // 수정해야함
-  const handleSubmitQuestion = async () => {
-    try {
-      const token = getCookie("token");
-      const formData = new FormData();
-      formData.append(
-        "postRequestDto",
-        JSON.stringify({
-          title: questionTitle,
-          content: questionInput,
-          category: "",
-        })
-      );
-      const response = await axios.post(
-        "http://3.34.10.94:8080/api/questions",
-        formData,
-        {
-          headers: {
-            Authorization: `${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log("Question submitted successfully:", response.data);
-    } catch (error) {
-      console.error("Error submitting question:", error);
-    }
+  const handleSubmitQuestion = () => {
+    // Create postRequestDto
+    const token = getCookie("token");
+    const postRequestDto = {
+      title,
+      content,
+      category: "QUESTION",
+    };
+
+    // API call
+    axios
+      .post("http://3.34.10.94:8080/api/post", postRequestDto, {
+        headers: {
+          Authorization: `${token}`, // Added "Bearer" prefix
+        },
+      })
+      .then((response) => {
+        // Handle success
+        console.log("글이 성공적으로 작성되었습니다.", response.data);
+        // Close modal
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("글 작성 중 오류가 발생했습니다.", error);
+      });
   };
 
   const handlePickVideo = async () => {
@@ -165,11 +164,11 @@ function Video() {
   };
 
   const handleQuestionInputChange = (e) => {
-    setQuestionInput(e.target.value);
+    setContent(e.target.value);
   };
 
   const handleQuestionTitleChange = (e) => {
-    setQuestionTitle(e.target.value);
+    setTitle(e.target.value);
   };
 
   const handleCancel = () => {
@@ -255,13 +254,13 @@ function Video() {
                   </div>
                   <textarea
                     className="videolist-question-border"
-                    value={questionTitle}
+                    value={title}
                     onChange={handleQuestionTitleChange}
                     placeholder="제목을 입력해주세요"
                   />
                   <textarea
                     className="border border-gray rounded-lg p-10 h-full"
-                    value={questionInput}
+                    value={content}
                     onChange={handleQuestionInputChange}
                     placeholder="내용을 입력해주세요 "
                   />

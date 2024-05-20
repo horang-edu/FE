@@ -1,15 +1,17 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { getCookie } from "../../utils/cookie";
 
 function Question() {
   const [posts, setPosts] = useState([]);
-  const postId = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
+    const token = getCookie();
     const fetchPost = async () => {
       try {
-        const response = await fetch(`/api/post/class/${postId}`);
+        const response = await fetch(`http://3.34.10.94:8080/api/post/${id}`);
         const data = await response.json();
         if (response.ok) {
           setPosts([data.data]); // Set posts array with the fetched post
@@ -22,7 +24,7 @@ function Question() {
     };
 
     fetchPost();
-  }, [postId]);
+  }, [id]);
 
   return (
     <div className="py-[2.375rem] flex flex-col">
