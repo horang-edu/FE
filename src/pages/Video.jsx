@@ -10,7 +10,7 @@ import "../style/styles.css";
 // import { ReactComponent as PickIcon } from "../assets/svg/pick.svg";
 // import { ReactComponent as EditerIcon } from "../assets/svg/editer.svg";
 import { getCookie } from "../utils/cookie";
-// import { eachDayOfInterval } from "date-fns";
+
 function Video() {
   const { id } = useParams();
   const [videoPlayTime, setVideoPlayTime] = useState(null);
@@ -116,9 +116,7 @@ function Video() {
     overflow: "hidden",
   };
 
-  // 수정해야함
   const handleSubmitQuestion = () => {
-    // Create postRequestDto
     const token = getCookie("token");
     const postRequestDto = {
       title,
@@ -126,20 +124,21 @@ function Video() {
       category: "QUESTION",
     };
 
-    // API call
     axios
       .post("http://3.34.10.94:8080/api/post", postRequestDto, {
         headers: {
-          Authorization: `${token}`, // Added "Bearer" prefix
+          Authorization: `${token}`,
         },
       })
       .then((response) => {
-        // Handle success
         console.log("글이 성공적으로 작성되었습니다.", response.data);
-        // Close modal
+        alert("글이 작성되었습니다.");
+        setTitle("");
+        setContent("");
+        setShowNotes(prevShowNotes);
+        setShowQuestion(prevShowQuestion);
       })
       .catch((error) => {
-        // Handle error
         console.error("글 작성 중 오류가 발생했습니다.", error);
       });
   };
@@ -157,7 +156,7 @@ function Video() {
         }
       );
       console.log("Video picked successfully:", response.data);
-      alert("찜등록되었습니다.");
+      alert("찜 등록되었습니다.");
     } catch (error) {
       console.error("Error picking video:", error);
     }
@@ -176,6 +175,10 @@ function Video() {
     setShowQuestion(prevShowQuestion);
   };
 
+  const handleLectureNotesClick = (event) => {
+    event.preventDefault();
+    alert("준비중입니다");
+  };
   return (
     <div className="flex flex-col m-16 ">
       <div className="flex justify-center">
@@ -209,7 +212,8 @@ function Video() {
                 </div>
                 <div
                   className="text-xl text-[#F99363] flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border border-[#FFF8EF] bg-[#FFD7C3] hover:bg-[#F99363] hover:text-[#FFD7C3]"
-                  onClick={() => setShowNotes()}
+                  // onClick={() => setShowNotes()}
+                  onClick={handleLectureNotesClick}
                 >
                   나의 강의 노트
                 </div>
@@ -221,7 +225,12 @@ function Video() {
                 <div className="videolist">
                   <div className="videolist-font">강의 목록</div>
                   {videoList.map((item, index) => (
-                    <li className="videolist-font1" key={item.id}>
+                    <li
+                      className={`videolist-font1 ${
+                        item.id === parseInt(id) ? "selected" : ""
+                      }`}
+                      key={item.id}
+                    >
                       <Link to={`/video/${item.id}`}>{`${index + 1}. ${
                         item.title
                       }`}</Link>
@@ -275,7 +284,7 @@ function Video() {
                       className="videolist-question-button2"
                       onClick={handleSubmitQuestion}
                     >
-                      Submit
+                      등록하기
                     </button>
                   </div>
                 </div>
