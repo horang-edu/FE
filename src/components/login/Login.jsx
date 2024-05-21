@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import kakao_bg from "../../assets/img/kakao_bg.png";
 import google_bg from "../../assets/img/google_bg.png";
 import email_bg from "../../assets/img/email_bg.png";
 
 function Login() {
+  const nav = useNavigate();
   return (
     <div>
       <div className="w-full flex justify-center">
@@ -50,7 +51,9 @@ function Login() {
         </p>
         <p className="text-[0.75rem] mb-[2.8887rem] text-[#222]">
           아직 회원이 아니신가요?
-          <span className="ml-[0.625rem] text-[#F99363] font-semibold">가입하기</span>
+          <span className="ml-[0.625rem] text-[#F99363] font-semibold cursor-pointer" onClick={() => nav("/signup")}>
+            가입하기
+          </span>
         </p>
       </div>
     </div>
