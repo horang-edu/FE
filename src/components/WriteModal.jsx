@@ -15,7 +15,6 @@ function WriteModal({ isOpen, onClose, category }) {
   };
 
   const handleSubmit = () => {
-    // Create postRequestDto
     const token = getCookie("token");
     const postRequestDto = {
       title: title,
@@ -23,35 +22,45 @@ function WriteModal({ isOpen, onClose, category }) {
       category: category,
     };
 
-    // API call
     axios
       .post("http://3.34.10.94:8080/api/post", postRequestDto, {
         headers: {
-          Authorization: `${token}`, // Added "Bearer" prefix
-          "Content-Type": "application/json", // Set content type to JSON
+          Authorization: `${token}`,
+          "Content-Type": "application/json",
         },
       })
       .then((response) => {
-        // Handle success
         console.log("글이 성공적으로 작성되었습니다.", response.data);
-        onClose(); // Close modal
+        console.log(response.data.data);
+        alert("글 작성되었습니다.");
+        onClose();
+        window.location.reload();
       })
       .catch((error) => {
-        // Handle error
         console.error("글 작성 중 오류가 발생했습니다.", error);
       });
   };
 
   if (!isOpen) return null;
 
+  const handleOverlayClick = (event) => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+    <div
+      className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50"
+      onClick={handleOverlayClick}
+    >
       <div
         className="bg-white p-8 rounded-3xl "
         style={{
           width: "702px",
           height: "542px",
         }}
+        onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-2xl font-bold mb-8" style={{ color: "#6F3A22" }}>
           글 작성하기
