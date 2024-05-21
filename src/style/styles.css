@@ -506,3 +506,8 @@
   height: 19.25rem;
   width: full;
 }
+
+.videolist-font1.selected {
+  color: #f99363;
+  font-weight: bold;
+}
