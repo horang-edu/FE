@@ -127,7 +127,7 @@ function Study() {
             <div className="study-table1">
               <div className="study-table-font">최근 학습한 영상</div>
               <Link to={`/video/${lastViewedVideo?.id}`}>
-                <div>강의{lastViewedVideo?.id}</div>
+                <div>{lastViewedVideo?.id}</div>
               </Link>
               <ProgressBar
                 completed={progressPercentage}
@@ -150,7 +150,6 @@ function Study() {
                 <div>{studyingVideos}</div>
               </Link>
             ))}
-            강의
             <ProgressBar
               completed={progressPercentage}
               height="8px"
