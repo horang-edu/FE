@@ -148,7 +148,7 @@ function Post() {
                         <div className="flex flex-row justify-between items-center mb-[35px]">
                             <div className="flex justify-center items-center flex-row">
                                 <div className="pr-2" onClick={() => nav("/community")} ><Back /></div>
-                                <div className="justify-center items-center text-[#6F3A22] text-xl font-bold mb-2">{post.title}</div>
+                                <div className="justify-center items-center text-[#6F3A22] text-xl font-bold mb-2 font-yg-jalnan">{post.title}</div>
                             </div>
                             {isAuthor && (
                                 <div className="flex mt-4">
