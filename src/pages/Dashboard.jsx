@@ -27,7 +27,7 @@ function Dashboard() {
               <Wishlist />
             </div>
             <div className="w-[29.0625rem]">
-              <div className="text-[#6F3A22] font-noto-sans font-semibold text-xl mb-[0.8rem]">
+              <div className="text-[#6F3A22] font-noto-sans font-semibold text-xl mb-[0.8rem] font-yg-jalnan">
                 내질문
               </div>
               <Tab tabData={tabData} />
