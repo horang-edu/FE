@@ -51,7 +51,7 @@ function WriteModal({ isOpen, onClose, category }) {
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50"
+      className="fixed inset-0 flex items-center justify-center bg-[#686868] bg-opacity-50 "
       onClick={handleOverlayClick}
     >
       <div
@@ -62,7 +62,10 @@ function WriteModal({ isOpen, onClose, category }) {
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-2xl font-bold mb-8" style={{ color: "#6F3A22" }}>
+        <h2
+          className="text-2xl font-bold mb-8 font-yg-jalnan"
+          style={{ color: "#6F3A22" }}
+        >
           글 작성하기
         </h2>
         <input
