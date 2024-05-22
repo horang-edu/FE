@@ -12,6 +12,7 @@ import Community from "../pages/Community";
 import SignUP from "../pages/SignUP";
 import Dictionary from "../components/dictionary/Dictionary";
 import Post from "../components/Post";
+import Teacher from "../pages/Teacher";
 
 function Router() {
   return (
@@ -26,6 +27,7 @@ function Router() {
           <Route path="/community" element={<Community />} />
           <Route path="/post/:id" element={<Post />} />
           <Route path="/dictionary" element={<Dictionary />} />
+          <Route path="/teacher" element={<Teacher />} />
         </Route>
         <Route element={<LoginLayout />}>
           <Route path="/login" element={<Login />} />
