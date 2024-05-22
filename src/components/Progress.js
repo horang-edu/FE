@@ -110,7 +110,7 @@ function Progress() {
   return (
     <div className="mb-8">
       <div className="flex justify-between p-3">
-        <div className="text-[#6F3A22] font-noto-sans font-semibold text-xl leading-118">
+        <div className="font-yg-jalnan text-[#6F3A22] font-noto-sans font-semibold text-xl leading-118">
           학습 진도율
         </div>
         <div className="flex flex-row items-center">
@@ -131,11 +131,11 @@ function Progress() {
           <span>안녕하세요, </span>
           {groupData && (
             <div className="font-semibold flex ">
-              <div className="ml-2 mr-2">{groupData.name}</div>
-              <div className="mr-2">{groupData.grade}</div>
+              <div className="ml-2 mr-2 font-yg-jalnan">{groupData.name}</div>
+              <div className="mr-2 font-yg-jalnan">{groupData.grade}</div>
             </div>
           )}
-          <span className="font-semibold">{user.data.name}님!</span>
+          <span className="font-semibold font-yg-jalnan">{user.data.name}님!</span>
         </div>
       </div>
       <div className="w-full h-[208px] mb-[68px]">
@@ -183,9 +183,9 @@ function Progress() {
                   }}
                 />
               </div>
-              <div className="flex justify-center items-center p-1">
-                <span className="text-[#F99363] ">2단계</span>까지
-                <span className="font-semibold pl-1">{remainingPercent}</span>
+              <div className="flex justify-center items-center p-1 font-yg-jalnan">
+                <span className="text-[#F99363] font-yg-jalnan ">2단계</span>까지
+                <span className="font-semibold pl-1 font-yg-jalnan">{remainingPercent}</span>
                 %남았어요. 파이팅!
               </div>
             </div>
