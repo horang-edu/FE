@@ -183,7 +183,7 @@ function Video() {
     <div className="flex flex-col m-16 ">
       <div className="flex justify-center">
         <div>
-          <div className="text-2xl font-bold text-464646">
+          <div className="text-2xl font-bold text-464646 font-yg-jalnan">
             {videoList.find((item) => item.id === parseInt(id)).title}
           </div>
           <div className="flex h-52rem">
@@ -197,21 +197,21 @@ function Video() {
               </div>
               <div className="flex flex-row justify-between mt-6 mb-6">
                 <div
-                  className="text-xl text-[#F99363] flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border border-[#FFF8EF] bg-[#FFD7C3] hover:bg-[#F99363] hover:text-[#FFD7C3]"
+                  className="font-yg-jalnan text-xl text-[#F99363] flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border border-[#FFF8EF] bg-[#FFD7C3] hover:bg-[#F99363] hover:text-[#FFD7C3]"
                   onClick={() => setShowQuestion()}
                 >
                   학습 질문
                 </div>
                 <div>
                   <div
-                    className="text-xl text-[#F99363] flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border border-[#FFF8EF] bg-[#FFD7C3] hover:bg-[#F99363] hover:text-[#FFD7C3]"
+                    className="font-yg-jalnan text-xl text-[#F99363] flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border border-[#FFF8EF] bg-[#FFD7C3] hover:bg-[#F99363] hover:text-[#FFD7C3]"
                     onClick={handlePickVideo}
                   >
                     찜하기
                   </div>
                 </div>
                 <div
-                  className="text-xl text-[#F99363] flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border border-[#FFF8EF] bg-[#FFD7C3] hover:bg-[#F99363] hover:text-[#FFD7C3]"
+                  className="font-yg-jalnan text-xl text-[#F99363] flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border border-[#FFF8EF] bg-[#FFD7C3] hover:bg-[#F99363] hover:text-[#FFD7C3]"
                   // onClick={() => setShowNotes()}
                   onClick={handleLectureNotesClick}
                 >
