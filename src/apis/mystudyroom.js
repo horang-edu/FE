@@ -2,7 +2,7 @@ import instance from "../apis/instance";
 
 export const fetchUserData = async (userId) => {
   try {
-    const response = await instance.get(`/api/student/${userId}`);
+    const response = await instance.get(`http://3.34.10.94:8080/api/student/${userId}`);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -34,7 +34,8 @@ export const addTask = async (newTask) => {
 
 export const fetchWishlist = async () => {
   try {
-    const response = await instance.get("/api/dibs");
+    const response = await instance.get("api/video/zzim/list");
+    console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.error(error);

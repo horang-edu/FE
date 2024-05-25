@@ -3,8 +3,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Noto Sans", "Jalnan", "Pretendard", "sans-serif"],
-        'yg-jalnan': ['yg-jalnan', 'sans-serif'],
+        sans: ["Noto Sans", "sans-serif", "Jalnan"],
+        "yg-jalnan": ["yg-jalnan", "sans-serif"],
       },
       width: {
         40: "2.5rem",
@@ -18,6 +18,7 @@ module.exports = {
         139: "8.6875rem",
         417: "26.0625rem",
         500: "31.25rem",
+        535: "33.437rem",
         542: "33.875rem",
         1100: "68.75rem"
       },
