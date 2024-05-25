@@ -4,6 +4,9 @@ import Dashboard from "../pages/Dashboard";
 import Layout from "../components/common/layout/Layout";
 import Practice from "../pages/Practice";
 import Study from "../pages/Study";
+import Chat from "../components/chat/Chat";
+import Learning from "../pages/Learning";
+import Quiz from "../pages/Quiz";
 import Login from "../components/login/Login";
 import EmailLogin from "../components/login/EmailLogin";
 import LoginLayout from "../components/common/layout/LoginLayout";
@@ -23,6 +26,9 @@ function Router() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/practice" element={<Practice />} />
           <Route path="/study" element={<Study />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="/learning" element={<Learning />} />
+          <Route path="/quiz" element={< Quiz/>} />
           <Route path="/video/:id" element={<Video />} />
           <Route path="/community" element={<Community />} />
           <Route path="/post/:id" element={<Post />} />

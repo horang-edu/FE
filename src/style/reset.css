@@ -1,15 +1,31 @@
-@import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap";
+/* @import "https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap";
 * {
   margin: 0;
   padding: 0;
   font-family: "Pretendard-Regular", sans-serif;
   transition: all 0.1s;
-}
+} */
 @media (max-width: 429px) {
   * {
     font-size: 14px;
   }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@100;300;400;500;700;900&display=swap');
+
+body {
+  font-family: 'Pretendard', sans-serif;
+}
+
+/* 다른 CSS 스타일링에서 폰트 가중치 사용 예시 */
+.bold {
+  font-weight: 700; /* Bold */
+}
+
+.light {
+  font-weight: 300; /* Light */
+}
+
 *,
 *:before,
 *:after {
