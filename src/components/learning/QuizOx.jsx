@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import OButton from "../../assets/img/O.png";
 import XButton from "../../assets/img/X.png";
 import instance from '../../apis/instance';
+import { getCookie } from '../../utils/cookie';
 
 
 function QuizOx() {
+  const token = getCookie("token");
   const [answer, setAnswer] = useState(null); // 선택된 답변 상태
   const [message, setMessage] = useState(null); // 메시지 상태
 
@@ -23,7 +25,7 @@ function QuizOx() {
       }, {
         headers: {
           'Content-Type': 'application/json',
-          
+          'Authorization': `${token}`
         }
       });
 
