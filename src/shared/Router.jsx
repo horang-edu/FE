@@ -21,14 +21,15 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route element={<Chat />} />
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/practice" element={<Practice />} />
           <Route path="/study" element={<Study />} />
-          <Route path="/chat" element={<Chat />} />
+          {/* <Route path="/chat" element={<Chat />} /> */}
           <Route path="/learning" element={<Learning />} />
-          <Route path="/quiz" element={< Quiz/>} />
+          <Route path="/quiz" element={< Quiz />} />
           <Route path="/video/:id" element={<Video />} />
           <Route path="/community" element={<Community />} />
           <Route path="/post/:id" element={<Post />} />
