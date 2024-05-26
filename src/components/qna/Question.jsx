@@ -27,9 +27,9 @@ function Question() {
   }, [id]);
 
   return (
-    <div className="py-[2.375rem] flex flex-col">
+    <div className="task-layout">
       {posts.length === 0 ? (
-        <div className="text-gray">질문한 게시물이 없습니다.</div>
+        <div className="text-gray text-lg">질문한 게시물이 없습니다.</div>
       ) : (
         posts.map((post) => (
           <div key={post.id} className="flex flex-row mb-[1.625rem]">
