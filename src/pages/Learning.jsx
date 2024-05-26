@@ -4,9 +4,11 @@ import Level from "../components/learning/Level";
 
 function Learning() {
   return (
+    <div className="w-full flex justify-center items-center h-screen">
     <div>
         <Message/>
         <Level/>
+    </div>
     </div>
   )
 }

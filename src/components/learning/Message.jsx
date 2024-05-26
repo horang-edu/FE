@@ -7,7 +7,7 @@ function Message() {
     <div>
         <div className='message-container'>
             <div className='flex flex-col'>
-                <div className='text-24 text-white ml-43 mt-55'>코딩짱호랭이님!<br/>오늘도 열코해 볼까요?</div>
+                <div className='font-yg-jalnan text-24 text-white ml-43 mt-55'>코딩짱호랭이님!<br/>오늘도 열코해 볼까요?</div>
                 <div className='text-18 text-white mt-28 ml-43 tracking-0.5'>야옹 학습하고 경험치도 쌓아요! 차근차근 알려드립니다^0^</div>
             </div>
             <div class='message-image-container flex flex-row ml-292'>
