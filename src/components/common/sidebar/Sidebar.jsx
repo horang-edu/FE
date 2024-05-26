@@ -1,113 +1,69 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import logo from "../../../assets/img/logo.png";
-import dashboard from "../../../assets/svg/dashboard.svg";
-import dashboardHover from "../../../assets/svg/dashboardHover.svg";
-import home from "../../../assets/svg/home.svg";
-import homeHover from "../../../assets/svg/homeHover.svg";
-import study from "../../../assets/svg/study.svg";
-import studyHover from "../../../assets/svg/studyHover.svg";
-import practice from "../../../assets/svg/practice.svg";
-import practiceHover from "../../../assets/svg/practiceHover.svg";
+import React from "react";
+import home from "../../../assets/img/home.png";
+import lecture from "../../../assets/img/lecture.png";
+import study from "../../../assets/img/study.png";
+import dictionary from "../../../assets/img/dictionary.png";
+import community from "../../../assets/img/community.png";
+import mypage from "../../../assets/img/mypage.png";
+import idea_logo from "../../../assets/img/idea_logo.png";
+import logout from "../../../assets/img/logout.png";
+import { NavLink } from "react-router-dom";
 
-function Sidebar() {
-  const getIcon = (path) => {
-    switch (path) {
-      case '/':
-        return location.pathname === path ? homeHover : home;
-      case '/practice':
-        return location.pathname === path ? practiceHover : practice;
-      case '/study':
-        return location.pathname === path ? studyHover : study;
-      case '/dashboard':
-        return location.pathname === path ? dashboardHover : dashboard;
-      default:
-        return home;
-    }
-  };
-  const [currentIcon, setCurrentIcon] = useState({
-    home: home,
-    practice: practice,
-    study: study,
-    dashboard: dashboard
-  });
-
-  const location = useLocation();
-
-  useEffect(() => {
-    let newIcons = {
-      home: location.pathname === "/" ? homeHover : home,
-      practice: location.pathname === "/practice" ? practiceHover : practice,
-      study: location.pathname === "/study" ? studyHover : study,
-      dashboard:
-        location.pathname === "/dashboard" ? dashboardHover : dashboard
-    };
-    setCurrentIcon(newIcons);
-  }, [location]);
-
+const Sidebar = () => {
   return (
-    <nav className="w-[6.25rem] bg-color3">
-      <ul>
-        <li className="w-[6.25rem] h-[6.25rem] flex-all-center">
-          <button>
-            <img src={logo} alt="로고" className="w-[4.625rem] h-[4.625rem]" />
-          </button>
+    <div className="w-full h-full bg-[#fff]">
+      <ul className="w-full pt-[8.6875rem] flex flex-col items-center">
+        <li className="w-[84%]">
+          <NavLink to="/" className={({ isActive }) => `w-full h-[58px] hover:bg-[#FFF8EF] rounded-[10px] flex items-center font-yg-jalnan text-[0.875rem] ${isActive ? "bg-[#FFF8EF] text-[#F99363]" : "text-[#97705E] hover:text-[#F99363]"}`}>
+            <img src={home} alt="홈" className="ml-[18px] mr-[15px]" />홈
+          </NavLink>
         </li>
-        <NavLink to="/">
-        <li
-            className="w-[6.25rem] h-[6.25rem] flex-all-center hover:bg-color5"
-            onMouseEnter={() =>
-              setCurrentIcon({ ...currentIcon, home: homeHover })
-            }
-            onMouseLeave={() =>
-              setCurrentIcon({ ...currentIcon, home: getIcon("/") })
-            }
+        <li className="w-[84%]">
+          <NavLink to="/study" className={({ isActive }) => `w-full h-[58px] hover:bg-[#FFF8EF] rounded-[10px] flex items-center font-yg-jalnan text-[0.875rem] ${isActive ? "bg-[#FFF8EF] text-[#F99363]" : "text-[#97705E] hover:text-[#F99363]"}`}>
+            <img src={lecture} alt="강의 영상" className="ml-[18px] mr-[15px]" />
+            강의 영상
+          </NavLink>
+        </li>
+        <li className="w-[84%]">
+          <NavLink to="/practice" className={({ isActive }) => `w-full h-[58px] hover:bg-[#FFF8EF] rounded-[10px] flex items-center font-yg-jalnan text-[0.875rem] ${isActive ? "bg-[#FFF8EF] text-[#F99363]" : "text-[#97705E] hover:text-[#F99363]"}`}>
+            <img src={study} alt="학습하기" className="ml-[18px] mr-[15px]" />
+            야옹 학습하기
+          </NavLink>
+        </li>
+        <li className="w-[84%]">
+          <NavLink
+            to="/dictionary"
+            className={({ isActive }) => `w-full h-[58px] hover:bg-[#FFF8EF] rounded-[10px] flex items-center font-yg-jalnan text-[0.875rem] ${isActive ? "bg-[#FFF8EF] text-[#F99363]" : "text-[#97705E] hover:text-[#F99363]"}`}
           >
-            <img src={currentIcon.home} alt="홈" />
-          </li>
-        </NavLink>
-        <NavLink to="/practice">
-        <li
-            className="w-[6.25rem] h-[6.25rem] flex-all-center hover:bg-color5"
-            onMouseEnter={() =>
-              setCurrentIcon({ ...currentIcon, practice: practiceHover })
-            }
-            onMouseLeave={() =>
-              setCurrentIcon({ ...currentIcon, practice: getIcon("/practice") })
-            }
-          >
-            <img src={currentIcon.practice} alt="실습하기" />
-          </li>
-        </NavLink>
-        <NavLink to="/study">
-        <li
-            className="w-[6.25rem] h-[6.25rem] flex-all-center hover:bg-color5"
-            onMouseEnter={() =>
-              setCurrentIcon({ ...currentIcon, study: studyHover })
-            }
-            onMouseLeave={() =>
-              setCurrentIcon({ ...currentIcon, study: getIcon("/study") })
-            }
-          >
-            <img src={currentIcon.study} alt="학습하기" />
-          </li>
-        </NavLink>
-        <NavLink to="/dashboard">
-        <li
-            className="w-[6.25rem] h-[6.25rem] flex-all-center hover:bg-color5"
-            onMouseEnter={() =>
-              setCurrentIcon({ ...currentIcon, dashboard: dashboardHover })
-            }
-            onMouseLeave={() =>
-              setCurrentIcon({ ...currentIcon, dashboard: getIcon("/dashboard") })
-            }
-          >
-            <img src={currentIcon.dashboard} alt="나의 학습방" />
-          </li>
-        </NavLink>
+            <img src={dictionary} alt="사전" className="ml-[18px] mr-[15px]" />
+            야옹 사전
+          </NavLink>
+        </li>
+        <li className="w-[84%]">
+          <NavLink to="/community" className={({ isActive }) => `w-full h-[58px] hover:bg-[#FFF8EF] rounded-[10px] flex items-center font-yg-jalnan text-[0.875rem] ${isActive ? "bg-[#FFF8EF] text-[#F99363]" : "text-[#97705E] hover:text-[#F99363]"}`}>
+            <img src={community} alt="커뮤니티" className="ml-[18px] mr-[15px]" />
+            커뮤니티
+          </NavLink>
+        </li>
+        <li className="w-[84%]">
+          <NavLink to="/dashboard" className={({ isActive }) => `w-full h-[58px] hover:bg-[#FFF8EF] rounded-[10px] flex items-center font-yg-jalnan text-[0.875rem] ${isActive ? "bg-[#FFF8EF] text-[#F99363]" : "text-[#97705E] hover:text-[#F99363]"}`}>
+            <img src={mypage} alt="나의 학습방" className="ml-[18px] mr-[15px]" />
+            나의 학습방
+          </NavLink>
+        </li>
       </ul>
-    </nav>
+      <div className="w-full flex flex-col items-center mt-[240px]">
+        <button className="w-[84%] h-[72px] flex justify-center items-center relative bg-[#FFF8EF] font-yg-jalnan text-[#F99363] rounded-[10px]">
+          <img src={idea_logo} alt="로고" className="w-[98px] h-[98px] absolute top-[-100%]" />
+          야옹이에게 질문하기
+        </button>
+        <button className="w-[66%] flex justify-between mt-[50px]">
+          <h3 className="text-[#97705E]"> 로그아웃 하기</h3>
+          <img src={logout} alt="로그아웃" />
+        </button>
+      </div>
+    </div>
   );
-}
+};
 
 export default Sidebar;
