@@ -2,10 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import cat from "../../assets/img/cat.png";
 import myprofile from "../../assets/img/myprofile.png";
+import chatclose from "../../assets/img/chatclose.png"; 
 
 function Chat() {
   const [inputMessage, setInputMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
+  const [isOpen, setIsOpen] = useState(true);
   const chatContainerRef = useRef(null);
 
   const handleSubmit = async (e) => {
@@ -33,7 +35,9 @@ function Chat() {
 
   useEffect(() => {
     // 매번 채팅이 업데이트될 때 스크롤을 맨 아래로 이동
-    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
   }, [chatHistory]);
 
   // 클라이언트에서 OPTIONS 요청에 대한 응답을 처리
@@ -49,10 +53,16 @@ function Chat() {
     handleOptionsResponse();
   }, []);
 
+  const handleClose = () => {
+    setIsOpen(false); // 채팅 창 닫기
+  };
+
+  if (!isOpen) return null; // 채팅 창이 닫히면 아무것도 렌더링하지 않음
+
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-      <div style={{ width: '415px', height: '588px', margin: '65px', display: 'flex', flexDirection: 'column', backgroundColor: '#FFF8EF', borderRadius: '20px' }}>
-        <div style={{ backgroundColor: '#FFFCF8', fontSize: '20px', color: '#F99363', padding: '24px', textAlign: 'left', boxShadow: '0 5px 5px rgba(249, 147, 99, 0.05)' }}>
+      <div style={{ width: '415px', height: '588px', margin: '65px', display: 'flex', flexDirection: 'column', backgroundColor: '#FFF8EF', borderRadius: '20px', position: 'relative' }}>
+        <div style={{ backgroundColor: '#FFFCF8', fontSize: '20px', color: '#F99363', padding: '24px', textAlign: 'left', boxShadow: '0 5px 5px rgba(249, 147, 99, 0.05)', borderRadius: '20px 20px 0px 0px', position: 'relative' }}>
           야옹이에게 질문하기
         </div>
         <div
@@ -105,6 +115,9 @@ function Chat() {
             전송
           </button>
         </form>
+        <button onClick={handleClose} style={{ position: 'absolute', top: '-48px', right: '0px', width: '36px', height: '36px', backgroundColor: '#FFD7C3', border: 'none', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
+          <img src={chatclose} alt="Close" style={{ width: '20px', height: '20px' }} />
+        </button>
       </div>
     </div>
   );
