@@ -3,20 +3,28 @@ import check from "../../assets/img/check.png";
 import more from "../../assets/img/more.png";
 import { Link } from "react-router-dom";
 import Gauge from "./Gauge";
-import profile2 from "../../assets/img/profile2.png";
+import profile from "../../assets/img/profile2.png";
+import { useQuery } from "react-query";
+import getUserInfo from "../../apis/userinfo";
 
 const StudyCard = () => {
+  const { data, isLoading, isError } = useQuery("userInfo", getUserInfo);
+  console.log(data);
+
+  if (isLoading) return <div>User data Loading...</div>;
+  if (isError) return <div>유저 정보 처리 중 ERROR가 발생하였습니다.</div>;
+
   return (
     <div className="w-full h-full">
       <div className="w-full flex flex-col items-center mt-[15%]">
         <div className="relative">
-          <Gauge />
-          <img src={profile2} alt="프로필사진" className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] rounded-full z-0" />
+          <Gauge exp={data.exp} />
+          <img src={profile} alt="프로필사진" className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] rounded-full z-0" />
         </div>
         <div className="mt-[25px] mb-[42px] relative">
-          <div className="w-[16px] h-[16px] absolute top-[8px] left-[-24px] bg-[#F99363] text-[#fff] flex justify-center items-center text-[14px] rounded-sm">3</div>
-          <h3 className="text-[22px] font-bold">코딩짱호랭이</h3>
-          <p className="text-center text-[#97705E]">인헌초등학교</p>
+          <div className="w-[16px] h-[16px] absolute top-[8px] left-[-24px] bg-[#F99363] text-[#fff] flex justify-center items-center text-[14px] rounded-sm">{data.level}</div>
+          <h3 className="text-[22px] font-bold">{data.name}</h3>
+          <p className="text-center text-[#97705E]">{data.school}</p>
         </div>
       </div>
       <div className="m-[25px] border rounded-[20px] border-[#F99363] border-opacity-[20%]">

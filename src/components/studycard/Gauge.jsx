@@ -2,13 +2,13 @@ import React from "react";
 import Chart, { Tooltip } from "chart.js/auto";
 import { Doughnut } from "react-chartjs-2";
 
-const Gauge = () => {
-  const exp = 39;
+const Gauge = (props) => {
+  const exp = props.exp;
   const data = {
     labels: ["획득 경험치", "남은 경험치"],
     datasets: [
       {
-        data: [exp, 100 - exp],
+        data: [exp, 10000 - exp],
         backgroundColor: ["#E65D1D", "#FFF8EF"],
         borderRadius: 10,
       },
