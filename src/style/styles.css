@@ -66,28 +66,36 @@
 }
 
 .mission-layout {
-  height: 8.6875rem;
-  border: 0.125rem solid #f99363;
+  height: 167px;
   border-radius: 0.625rem;
 }
 
 .tabMenu-active {
-  padding: 0.75rem 0.9375rem;
-  background-color: #ffffff;
+  width: 14.0625rem;
+  height: 3.9375rem;
   color: #f99363;
-  font-weight: 600;
+  font-family: yg-jalnan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px #f99363 solid;
   cursor: pointer;
-  border-radius: 0.625rem 0.625rem 0rem 0rem;
-  box-shadow: 2px 0px 4px 0px rgba(159, 156, 240, 0.15);
+  background-color: #fdd9c5;
 }
 
 .tabMenu {
-  padding: 0.75rem 0.9375rem;
-  background-color: #f2f2f2;
-  color: #808080;
+  width: 14.0625rem;
+  height: 3.9375rem;
+  color: #f99363;
+  font-family: yg-jalnan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px #feddca solid;
   cursor: pointer;
-  border-radius: 0.625rem 0.625rem 0rem 0rem;
-  box-shadow: 2px 0px 4px 0px rgba(159, 156, 240, 0.15);
+  background-color: #feeee1;
 }
 
 .mission-modal-layout {
@@ -229,13 +237,6 @@
 ::-webkit-scrollbar-track {
   background: rgba(194, 131, 223, 0.1);
 } */
-
-.ranking-title {
-  text-align: center;
-  font-weight: 600;
-  color: #464646;
-  margin-bottom: 1.25rem;
-}
 
 .ranking-myRank {
   color: rgba(96, 90, 241, 1);
@@ -466,8 +467,7 @@
 =======
 @font-face {
   font-family: "yg-jalnan";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
-    format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -569,8 +569,7 @@
   flex-shrink: 0;
   border-radius: 1rem;
   background-color: #fff;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   margin-bottom: 1.875rem;
 }
 
