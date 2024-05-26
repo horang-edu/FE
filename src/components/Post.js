@@ -22,6 +22,7 @@ function Post() {
                     setTitle(response.data.data.title);
                     setContent(response.data.data.content);
                     console.log(response.data.data);
+
                 }
             } catch (error) {
                 console.error("Failed to fetch post:", error);
@@ -75,6 +76,7 @@ function Post() {
                 if (response.data.statusCode === 200) {
                     setPost({ ...post, title, content });
                     setIsEditing(false);
+                    alert("수정이 완료되었습니다.");
                 } else {
                     console.error("Failed to update post:", response.data.message);
                 }
@@ -97,10 +99,11 @@ function Post() {
                     },
                 });
                 if (response.data.statusCode === 200) {
-                    alert("Post deleted successfully");
+                    alert("삭제되었습니다.");
                     nav('/');
                 } else {
                     console.error("Failed to delete post:", response.data.message);
+
                 }
             } else {
                 console.error("Token is null");
@@ -145,12 +148,12 @@ function Post() {
                         <div className="flex flex-row justify-between items-center mb-[35px]">
                             <div className="flex justify-center items-center flex-row">
                                 <div className="pr-2" onClick={() => nav("/community")} ><Back /></div>
-                                <div className="justify-center items-center text-[#6F3A22] text-xl font-bold mb-2">{post.title}</div>
+                                <div className="justify-center items-center text-[#6F3A22] text-xl font-bold mb-2 font-yg-jalnan">{post.title}</div>
                             </div>
                             {isAuthor && (
                                 <div className="flex mt-4">
-                                    <button className="w-[82px] h-[57px] rounded-3xl mr-2 px-4 py-2 bg-[#FFF1EA] text-[#6F3A22]" onClick={() => setIsEditing(true)}>Edit</button>
-                                    <button className="w-[82px] h-[57px] rounded-3xl px-4 py-2 bg-[#FFD7C3] text-[#6F3A22]" onClick={handleDelete}>Delete</button>
+                                    <button className="w-[82px] h-[57px] rounded-3xl mr-2 px-4 py-2 bg-[#FFF1EA] text-[#6F3A22]" onClick={() => setIsEditing(true)}>수정</button>
+                                    <button className="w-[82px] h-[57px] rounded-3xl px-4 py-2 bg-[#FFD7C3] text-[#6F3A22]" onClick={handleDelete}>삭제</button>
                                 </div>
                             )}
                         </div>
@@ -159,9 +162,9 @@ function Post() {
                                 <div className="text-2xl font-bold  bg-gray-100 rounded-lg mb-4">{post.content}</div>
                             </div>
                             <div className="mt-auto">
-                                <span className="post-author text-gray-500 pr-2">{post.userName}</span>
-                                <span className="post-date text-gray-500 pr-2">{new Date(post.created).toLocaleDateString()}작성</span>
-                                <span className="post-views text-gray-500">Views: {post.views}</span>
+                                <span className="post-author text-gray-500 pr-2">작성자: {post.userName}</span>
+                                <span className="post-date text-gray-500 pr-2">작성 시간: {new Date(post.created).toLocaleString()}</span>
+                                <span className="post-views text-gray-500">조회수: {post.views}</span>
                             </div>
                         </div>
                         <div className="relative mt-[20px] w-full h-[110px] bg-[#FFF8EF] flex flex-col p-[35px] rounded-lg">

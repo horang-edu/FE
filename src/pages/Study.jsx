@@ -127,7 +127,7 @@ function Study() {
             <div className="study-table1">
               <div className="study-table-font">최근 학습한 영상</div>
               <Link to={`/video/${lastViewedVideo?.id}`}>
-                <div>강의{lastViewedVideo?.id}</div>
+                <div>{lastViewedVideo?.id}</div>
               </Link>
               <ProgressBar
                 completed={progressPercentage}
@@ -150,7 +150,6 @@ function Study() {
                 <div>{studyingVideos}</div>
               </Link>
             ))}
-            강의
             <ProgressBar
               completed={progressPercentage}
               height="8px"
@@ -171,8 +170,12 @@ function Study() {
         </div>
       </div>
       <div>
-        <div class="study-font1">영상으로 학습하기</div>
-        <div className="study-font2">0단계</div>
+        <div className="mt-[2.75rem] font-yg-jalnan text-[#6F3A22] text-xl">
+          영상으로 학습하기
+        </div>
+        <div className="font-yg-jalnan mt-[1rem] mb-[1rem] text-[#ed8936]">
+          0단계
+        </div>
         <div className="video-container">
           {firstFourVideos.map((video) => (
             <div key={video.id} className=" video-layout">
@@ -204,7 +207,9 @@ function Study() {
       </div>
 
       <div>
-        <div className="study-font2">1 단계</div>
+        <div className="font-yg-jalnan mt-[1rem] mb-[1rem] text-[#ed8936]">
+          1 단계
+        </div>
         <div className="video-container">
           {remainingVideos.map((video) => (
             <div key={video.id} className="video-layout">

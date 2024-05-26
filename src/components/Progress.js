@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { ReactComponent as Profile } from "../assets/svg/profile.svg";
 import ProgressBar from "react-progressbar";
-import { fetchUserData } from "../apis/mystudyroom";
-// import { useParams } from "react-router-dom";
 import { getCookie } from "../utils/cookie";
 import axios from "axios";
 
 
 function Progress() {
   const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true); // Added loading state
-
-  // const id = useParams();
+  const [loading, setLoading] = useState(true);
+  const [groupCode, setGroupCode] = useState("");
+  const [groupData, setGroupData] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -25,6 +23,7 @@ function Progress() {
           });
           if (response.data.statusCode === "OK") {
             setUserData(response.data);
+            console.log(response.data.data.id);
 
           }
         } else {
@@ -37,10 +36,57 @@ function Progress() {
       }
     };
 
+    const fetchGroupData = async () => {
+      try {
+        const token = await getCookie("token");
+        if (token) {
+          const response = await axios.get('http://3.34.10.94:8080/api/school', {
+            headers: {
+              Authorization: `${token}`,
+            },
+          });
+
+          if (response.data.statusCode === "OK") {
+            setGroupData(response.data.data);
+            console.log(response.data.data.name);
+          } else {
+            throw new Error("Failed to fetch group details");
+          }
+        } else {
+          throw new Error("Token is null");
+        }
+      } catch (error) {
+        console.error("Failed to fetch group details:", error);
+      }
+    };
+
     fetchUser();
+    fetchGroupData();
   }, []);
 
-  // Default values for progress if user data is not available
+  const joinGroup = async () => {
+    try {
+      const token = await getCookie("token");
+      if (token) {
+        const response = await axios.patch(`http://3.34.10.94:8080/api/user/detail`, {
+          groupCode: groupCode,
+        }, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
+
+        if (response.data.statusCode === "OK") {
+          alert("그룹에 가입되었습니다.");
+          window.location.reload();
+        }
+      }
+    } catch (error) {
+      console.error("Failed to join group:", error);
+      alert("코드가 일치하지 않습니다.");
+    }
+  };
+
   const defaultUserData = {
     data: {
       name: "사용자",
@@ -51,25 +97,45 @@ function Progress() {
     },
   };
 
-  // Use userData or defaultUserData depending on availability
+
   const user = userData || defaultUserData;
 
-  // Calculate remaining percent
+
   const remainingPercent = 100 - user.data.exp;
 
   if (loading) {
-    return <div>Loading...</div>; // Render loading state if data is still being fetched
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="mb-8">
       <div className="flex justify-between p-3">
-        <div className="text-[#6F3A22] font-noto-sans font-semibold text-xl leading-118">
+        <div className="font-yg-jalnan text-[#6F3A22] font-noto-sans font-semibold text-xl leading-118">
           학습 진도율
         </div>
-        <div>
-          <span>안녕하세요,</span>
-          <span className="font-semibold">{user.data.name}님!</span>
+        <div className="flex flex-row items-center">
+          {!groupData && (
+            <div className="flex flex-row items-center">
+              <input
+                type="text"
+                placeholder="그룹 코드 입력"
+                value={groupCode}
+                onChange={(e) => setGroupCode(e.target.value)}
+                className="w-full h-[2.8125rem] p-[0.75rem] text-[0.875rem] border border-solid border-[#FFD7C3] rounded-[10px]"
+              />
+              <button onClick={joinGroup} className="w-full h-[2.8125rem] font-yg-jalnan text-white bg-[#FFD7C3] rounded-[10px] hover:bg-[#F99363] mr-2">
+                그룹 가입하기
+              </button>
+            </div>
+          )}
+          <span>안녕하세요, </span>
+          {groupData && (
+            <div className="font-semibold flex ">
+              <div className="ml-2 mr-2 font-yg-jalnan">{groupData.name}</div>
+              <div className="mr-2 font-yg-jalnan">{groupData.grade}</div>
+            </div>
+          )}
+          <span className="font-semibold font-yg-jalnan">{user.data.name}님!</span>
         </div>
       </div>
       <div className="w-full h-[208px] mb-[68px]">
@@ -117,9 +183,9 @@ function Progress() {
                   }}
                 />
               </div>
-              <div className="flex justify-center items-center p-1">
-                <span className="text-[#F99363] ">2단계</span>까지
-                <span className="font-semibold pl-1">{remainingPercent}</span>
+              <div className="flex justify-center items-center p-1 font-yg-jalnan">
+                <span className="text-[#F99363] font-yg-jalnan ">2단계</span>까지
+                <span className="font-semibold pl-1 font-yg-jalnan">{remainingPercent}</span>
                 %남았어요. 파이팅!
               </div>
             </div>

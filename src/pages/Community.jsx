@@ -8,10 +8,9 @@ function Community() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [posts, setPosts] = useState([]);
   const [category, setCategory] = useState("FREE");
-  const [activeCategory, setActiveCategory] = useState("FREE"); // Default category
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1); // Assuming total pages initially 1
-
+  const [activeCategory, setActiveCategory] = useState("FREE");
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -32,6 +31,8 @@ function Community() {
             config.headers = { Authorization: `${token}` };
           } else {
             console.error("No token found");
+            setPosts([]);
+            setTotalPages(0);
             return;
           }
         } else if (category === "FREE") {
@@ -46,10 +47,15 @@ function Community() {
         if (response.data.statusCode === "OK") {
           setPosts(response.data.data.content);
           setTotalPages(response.data.data.totalPages);
-          console.log("Fetched posts:", response.data.data.content);
+          console.log("Fetched posts:", response.data.data);
         }
       } catch (error) {
         console.error("Failed to fetch posts:", error);
+        if (category === "CLASS") {
+          setPosts([]); // Clear posts on error for CLASS category
+          setTotalPages(0);
+          alert("학급에 가입 해주세요");
+        }
       }
     };
 
@@ -59,7 +65,7 @@ function Community() {
   const handleCategoryChange = (newCategory) => {
     setCategory(newCategory);
     setActiveCategory(newCategory);
-    setCurrentPage(1);
+    setCurrentPage(0);
   };
 
   const handlePageChange = (newPage) => {
@@ -67,7 +73,7 @@ function Community() {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen">
+    <div className="flex flex-col items-center min-h-screen bg-white">
       <div className="flex justify-center gap-8 mt-24">
         <div
           className={`flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border ${
@@ -77,7 +83,7 @@ function Community() {
           } hover:border-[#F99363] bg-[#FFF8EF]`}
           onClick={() => handleCategoryChange("FREE")}
         >
-          <span>자유게시판</span>
+          <span className="font-yg-jalnan text-[#F99363]">자유게시판</span>
         </div>
         <div
           className={`flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border ${
@@ -87,7 +93,7 @@ function Community() {
           } hover:border-[#F99363] bg-[#FFF8EF]`}
           onClick={() => handleCategoryChange("CLASS")}
         >
-          <span>학급 공지사항</span>
+          <span className="font-yg-jalnan text-[#F99363]">학급 공지사항</span>
         </div>
         <div
           className={`flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border ${
@@ -97,7 +103,7 @@ function Community() {
           } hover:border-[#F99363] bg-[#FFF8EF]`}
           onClick={() => handleCategoryChange("QUESTION")}
         >
-          <span>학습 질문</span>
+          <span className="font-yg-jalnan text-[#F99363]">학습 질문</span>
         </div>
         <div
           className={`flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border ${
@@ -107,13 +113,13 @@ function Community() {
           } hover:border-[#F99363] bg-[#FFF8EF]`}
           onClick={() => handleCategoryChange("DIARY")}
         >
-          <span>개발일지</span>
+          <span className="font-yg-jalnan text-[#F99363]">공부일지</span>
         </div>
         <div
           onClick={openModal}
           className="flex justify-center items-center w-[11.9375rem] h-[4.1875rem] rounded-[1.25rem] border border-transparent hover:border-[#FFF8EF] bg-[#F99363]"
         >
-          <span>글남기기</span>
+          <span className="font-yg-jalnan text-[#FFFFFF]">글남기기</span>
         </div>
         <WriteModal
           isOpen={isModalOpen}
@@ -142,7 +148,8 @@ function Community() {
                 <div className="flex gap-10">
                   <div className="text-sm">{post.userName}</div>
                   <div className="text-sm text-gray">
-                    {new Date(post.created).toLocaleDateString()}
+                    {/* {new Date(post.created).toLocaleDateString()} */}
+                    {new Date(post.created).toLocaleString()}
                   </div>
                 </div>
                 <div className="flex gap-10">
@@ -155,14 +162,14 @@ function Community() {
           </div>
         ))}
       </div>
-      <footer className="w-[1440px] fixed bottom-0 bg-[#FFF8EF]">
+      <footer className="w-[1440px] fixed bottom-0 ">
         <div className="flex justify-center gap-4 py-4">
           {Array.from({ length: totalPages }, (_, index) => (
             <button
               key={index}
-              onClick={() => handlePageChange(index + 1)}
+              onClick={() => handlePageChange(index)}
               className={`px-2 py-2 rounded ${
-                currentPage === index + 1
+                currentPage === index
                   ? "bg-[#F99363] text-white"
                   : "bg-gray-200"
               }`}

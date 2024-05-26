@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import home from "../../../assets/img/home.png";
 import lecture from "../../../assets/img/lecture.png";
 import study from "../../../assets/img/study.png";
@@ -8,8 +8,17 @@ import mypage from "../../../assets/img/mypage.png";
 import idea_logo from "../../../assets/img/idea_logo.png";
 import logout from "../../../assets/img/logout.png";
 import { NavLink } from "react-router-dom";
+import Chat from "../../chat/Chat"; // Chat 컴포넌트를 올바르게 불러옵니다.
+
 
 const Sidebar = () => {
+  const [isChatOpen, setIsChatOpen] = useState(false); 
+
+  // 야옹이에게 질문하기 버튼을 클릭할 때 호출되는 함수입니다.
+  const handleChatButtonClick = () => {
+    setIsChatOpen((prevIsChatOpen) => !prevIsChatOpen); 
+  };
+  
   return (
     <div className="w-full h-full bg-[#fff]">
       <ul className="w-full pt-[8.6875rem] flex flex-col items-center">
@@ -25,7 +34,7 @@ const Sidebar = () => {
           </NavLink>
         </li>
         <li className="w-[84%]">
-          <NavLink to="/practice" className={({ isActive }) => `w-full h-[58px] hover:bg-[#FFF8EF] rounded-[10px] flex items-center font-yg-jalnan text-[0.875rem] ${isActive ? "bg-[#FFF8EF] text-[#F99363]" : "text-[#97705E] hover:text-[#F99363]"}`}>
+          <NavLink to="/learning" className={({ isActive }) => `w-full h-[58px] hover:bg-[#FFF8EF] rounded-[10px] flex items-center font-yg-jalnan text-[0.875rem] ${isActive ? "bg-[#FFF8EF] text-[#F99363]" : "text-[#97705E] hover:text-[#F99363]"}`}>
             <img src={study} alt="학습하기" className="ml-[18px] mr-[15px]" />
             야옹 학습하기
           </NavLink>
@@ -53,7 +62,7 @@ const Sidebar = () => {
         </li>
       </ul>
       <div className="w-full flex flex-col items-center mt-[240px]">
-        <button className="w-[84%] h-[72px] flex justify-center items-center relative bg-[#FFF8EF] font-yg-jalnan text-[#F99363] rounded-[10px]">
+        <button onClick={handleChatButtonClick} className="w-[84%] h-[72px] flex justify-center items-center relative bg-[#FFF8EF] font-yg-jalnan text-[#F99363] rounded-[10px]">
           <img src={idea_logo} alt="로고" className="w-[98px] h-[98px] absolute top-[-100%]" />
           야옹이에게 질문하기
         </button>
@@ -62,6 +71,7 @@ const Sidebar = () => {
           <img src={logout} alt="로그아웃" />
         </button>
       </div>
+      {isChatOpen && <Chat />}
     </div>
   );
 };
