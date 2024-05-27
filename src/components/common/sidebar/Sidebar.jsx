@@ -9,16 +9,22 @@ import idea_logo from "../../../assets/img/idea_logo.png";
 import logout from "../../../assets/img/logout.png";
 import { NavLink } from "react-router-dom";
 import Chat from "../../chat/Chat"; // Chat 컴포넌트를 올바르게 불러옵니다.
-
+import { getCookie, setCookie } from "../../../utils/cookie";
 
 const Sidebar = () => {
-  const [isChatOpen, setIsChatOpen] = useState(false); 
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   // 야옹이에게 질문하기 버튼을 클릭할 때 호출되는 함수입니다.
   const handleChatButtonClick = () => {
-    setIsChatOpen((prevIsChatOpen) => !prevIsChatOpen); 
+    setIsChatOpen((prevIsChatOpen) => !prevIsChatOpen);
   };
-  
+
+  const handleLogoutClick = () => {
+    setCookie("token", "", -1);
+    alert("로그아웃 되었습니다.");
+    window.location.href = "/login";
+  };
+
   return (
     <div className="w-full h-full bg-[#fff]">
       <ul className="w-full pt-[8.6875rem] flex flex-col items-center">
@@ -66,7 +72,7 @@ const Sidebar = () => {
           <img src={idea_logo} alt="로고" className="w-[98px] h-[98px] absolute top-[-100%]" />
           야옹이에게 질문하기
         </button>
-        <button className="w-[66%] flex justify-between mt-[50px]">
+        <button className="w-[66%] flex justify-between mt-[50px]" onClick={handleLogoutClick}>
           <h3 className="text-[#97705E]"> 로그아웃 하기</h3>
           <img src={logout} alt="로그아웃" />
         </button>
